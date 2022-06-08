@@ -1,0 +1,37 @@
+{
+    "name": "@defichainwizard/custom-transactions",
+    "version": "0.0.1",
+    "description": "The npm custom transaction library for the DeFIChain Wizard",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "tsc && npm run docs",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "docs": "npx typedoc --excludePrivate --plugin typedoc-plugin-markdown src/index.ts",
+        "publish": "npm run build && npm publish --access public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DeFiChain-Wizard/custom-transaction-library.git"
+    },
+    "keywords": [
+        "defichain",
+        "defichainwizard"
+    ],
+    "author": "Sascha Sambale",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/DeFiChain-Wizard/custom-transaction-library/issues"
+    },
+    "homepage": "https://github.com/DeFiChain-Wizard/custom-transaction-library#readme",
+    "dependencies": {
+        "@defichain/jellyfish-network": "^2.45.11",
+        "@defichain/whale-api-client": "^2.45.11",
+        "@defichain/whale-api-wallet": "^2.45.11"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.41",
+        "typedoc": "^0.22.17",
+        "typedoc-plugin-markdown": "^3.12.1"
+    }
+}
