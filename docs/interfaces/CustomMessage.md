@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[transactions/message.ts:4](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/27d5cb0/src/transactions/message.ts#L4)
+[transactions/message.ts:4](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/da40217/src/transactions/message.ts#L4)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:3](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/27d5cb0/src/transactions/message.ts#L3)
+[transactions/message.ts:3](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/da40217/src/transactions/message.ts#L3)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:2](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/27d5cb0/src/transactions/message.ts#L2)
+[transactions/message.ts:2](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/da40217/src/transactions/message.ts#L2)
