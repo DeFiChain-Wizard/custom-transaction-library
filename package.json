@@ -27,7 +27,10 @@
     "dependencies": {
         "@defichain/jellyfish-network": "^2.45.11",
         "@defichain/whale-api-client": "^2.45.11",
-        "@defichain/whale-api-wallet": "^2.45.11"
+        "@defichain/whale-api-wallet": "^2.45.11",
+        "@types/crypto-js": "^4.1.1",
+        "crypto-js": "^4.1.1",
+        "lzma-web": "^3.0.1"
     },
     "devDependencies": {
         "@types/node": "^17.0.41",

@@ -1,13 +1,3 @@
-interface CustomMessage {
-  version: string;
-  vaultId: string;
-  pause: number;
-  compounding: CustomMessageCompounding;
-  poolpairs: { [key: string]: number }; // arbitrary number of dTokens as Keys with the ratio number as value
-  rules: CustomMessageRules;
-  telegram: CustomMessageTelegram;
-}
-
 interface CustomMessageCompounding {
   threshold: number;
   mode: 1 | 2 | 3;
@@ -21,6 +11,15 @@ interface CustomMessageRules {
 interface CustomMessageTelegram {
   key: string;
   receiver: string;
+}
+interface CustomMessage {
+  version: string;
+  vaultId: string;
+  pause: number;
+  compounding: CustomMessageCompounding;
+  poolpairs: { [key: string]: number }; // arbitrary number of dTokens as Keys with the ratio number as value
+  rules: CustomMessageRules;
+  telegram: CustomMessageTelegram;
 }
 
 export { CustomMessage };

@@ -7,6 +7,8 @@ import {
 import { Network } from "@defichain/jellyfish-network";
 import { CustomMessage } from "./message";
 import { CustomTXBuilder } from "../blockchain/customtransactionbuilder";
+import { MessageCompressor } from "../utils/compressor";
+import { MessageEncryptor } from "../utils/encryptor";
 
 interface DFITransaction {
   send: (message: CustomMessage) => void;
@@ -16,20 +18,29 @@ interface TransactionOptions {
   client: WhaleApiClient;
   account: WhaleWalletAccount;
   network: Network;
+  passphrase: string;
 }
 
 class Transaction implements DFITransaction {
   private readonly client: WhaleApiClient;
   private readonly account: WhaleWalletAccount;
   private readonly network: Network;
+  private readonly passphrase: string;
   constructor(config: TransactionOptions) {
     this.client = config.client;
     this.account = config.account;
     this.network = config.network;
+    this.passphrase = config.passphrase;
   }
 
   async send(message: CustomMessage): Promise<string> {
-    return await this.sendCustomMessage(this.prepareMessage(message));
+    return await this.sendCustomMessage(
+      await this.compressAndEncryptMessage(message)
+    );
+  }
+
+  async getCustomMessage(message: string): Promise<CustomMessage> {
+    return await this.decryptAndDecompressMessage(message);
   }
 
   private async sendCustomMessage(message: string): Promise<string> {
@@ -60,13 +71,35 @@ class Transaction implements DFITransaction {
     throw Error("No transcation ID received!");
   }
 
-  private prepareMessage(message: CustomMessage): string {
+  private async compressAndEncryptMessage(
+    message: CustomMessage
+  ): Promise<string> {
     // first we will compress the message
     console.log("Compressing message");
-    console.log(message);
+    const compressedData = await MessageCompressor.compress(message);
+    console.log(compressedData);
     // now we will encrypt the message
+
     console.log("Encrypting message");
-    return "compressed & encrypted message";
+    const encryptedData = MessageEncryptor.encrypt(
+      compressedData,
+      this.passphrase
+    );
+
+    return encryptedData;
+  }
+
+  private async decryptAndDecompressMessage(
+    message: string
+  ): Promise<CustomMessage> {
+    // first we will decrypt the message
+    console.log("decrypting message");
+    const decryptedData = MessageEncryptor.decrypt(message, this.passphrase);
+    console.log("Decompressing message");
+    const decompressedData = await MessageCompressor.decompress(decryptedData);
+    console.log(decompressedData);
+    // now we will encrypt the message
+    return decompressedData;
   }
 }
 
