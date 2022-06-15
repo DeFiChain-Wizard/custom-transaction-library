@@ -33,6 +33,10 @@ class Transaction implements DFITransaction {
     this.passphrase = config.passphrase;
   }
 
+  async sendTest(message: CustomMessage): Promise<string> {
+    return await this.compressAndEncryptMessage(message);
+  }
+
   async send(message: CustomMessage): Promise<string> {
     return await this.sendCustomMessage(
       await this.compressAndEncryptMessage(message)
@@ -86,6 +90,8 @@ class Transaction implements DFITransaction {
       this.passphrase
     );
 
+    console.log(encryptedData);
+
     return encryptedData;
   }
 
@@ -95,6 +101,7 @@ class Transaction implements DFITransaction {
     // first we will decrypt the message
     console.log("decrypting message");
     const decryptedData = MessageEncryptor.decrypt(message, this.passphrase);
+    console.log(decryptedData);
     console.log("Decompressing message");
     const decompressedData = await MessageCompressor.decompress(decryptedData);
     console.log(decompressedData);

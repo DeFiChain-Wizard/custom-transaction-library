@@ -9,6 +9,7 @@
 - [account](TransactionOptions.md#account)
 - [client](TransactionOptions.md#client)
 - [network](TransactionOptions.md#network)
+- [passphrase](TransactionOptions.md#passphrase)
 
 ## Properties
 
@@ -18,7 +19,7 @@
 
 #### Defined in
 
-[transactions/transaction.ts:17](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/da40217/src/transactions/transaction.ts#L17)
+[transactions/transaction.ts:19](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L19)
 
 ___
 
@@ -28,7 +29,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:16](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/da40217/src/transactions/transaction.ts#L16)
+[transactions/transaction.ts:18](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L18)
 
 ___
 
@@ -38,4 +39,14 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:18](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/da40217/src/transactions/transaction.ts#L18)
+[transactions/transaction.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L20)
+
+___
+
+### passphrase
+
+• **passphrase**: `string`
+
+#### Defined in
+
+[transactions/transaction.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L21)

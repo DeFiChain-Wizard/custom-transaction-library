@@ -12,7 +12,7 @@ npm i @defichainwizard/custom-transactions
 
 # Basic Usage
 
-You can import the classes to use like this:
+You can import the objects to use like this:
 
 ```ts
 import {
