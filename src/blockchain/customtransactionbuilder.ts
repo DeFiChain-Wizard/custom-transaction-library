@@ -13,7 +13,7 @@ import { BigNumber } from "@defichain/jellyfish-api-core";
 import { WhaleApiClient } from "@defichain/whale-api-client";
 
 class CustomTXBuilder extends P2WPKHTxnBuilder {
-  async getCustomTx(data: Buffer, changeScript: Script) {
+  async getCustomTx(data: string, changeScript: Script) {
     const wizardTransactionPrefix = "WzTx";
     const { prevouts, vin, total } = await this.allPrevouts();
     const buf = Buffer.from(wizardTransactionPrefix + data);

@@ -1,6 +1,7 @@
 # test directoy
 test
 src
+test.ts
 tsconfig.json
 
 # Logs

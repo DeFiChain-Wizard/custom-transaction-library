@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[transactions/transaction.ts:19](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L19)
+[transactions/transaction.ts:19](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L19)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:18](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L18)
+[transactions/transaction.ts:18](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L18)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L20)
+[transactions/transaction.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L20)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L21)
+[transactions/transaction.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L21)

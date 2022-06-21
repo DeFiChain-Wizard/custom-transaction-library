@@ -35,15 +35,15 @@ class Transaction implements DFITransaction {
 
   async send(message: CustomMessage): Promise<string> {
     return await this.sendCustomMessage(
-      await this.compressAndEncryptMessage(message)
+      this.compressAndEncryptMessage(message)
     );
   }
 
-  getCustomMessage(message: Buffer): CustomMessage {
+  getCustomMessage(message: string): CustomMessage {
     return this.decryptAndDecompressMessage(message);
   }
 
-  private async sendCustomMessage(message: Buffer): Promise<string> {
+  private async sendCustomMessage(message: string): Promise<string> {
     const feeRateProvider = new WhaleFeeRateProvider(this.client);
     const prevoutProvider = new WhalePrevoutProvider(this.account, 200);
     const builder = new CustomTXBuilder(
@@ -71,7 +71,7 @@ class Transaction implements DFITransaction {
     throw Error("No transcation ID received!");
   }
 
-  private compressAndEncryptMessage(message: CustomMessage): Buffer {
+  private compressAndEncryptMessage(message: CustomMessage): string {
     // first we will compress the message
     console.log("Compressing message");
     const compressedData = MessageCompressor.compress(message);
@@ -89,7 +89,7 @@ class Transaction implements DFITransaction {
     return encryptedData;
   }
 
-  private decryptAndDecompressMessage(message: Buffer): CustomMessage {
+  private decryptAndDecompressMessage(message: string): CustomMessage {
     // first we will decrypt the message
     console.log("decrypting message");
     const decryptedData = MessageEncryptor.decrypt(message, this.passphrase);

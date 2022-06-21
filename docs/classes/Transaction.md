@@ -16,7 +16,6 @@
 
 - [getCustomMessage](Transaction.md#getcustommessage)
 - [send](Transaction.md#send)
-- [sendTest](Transaction.md#sendtest)
 
 ## Constructors
 
@@ -32,13 +31,13 @@
 
 #### Defined in
 
-[transactions/transaction.ts:29](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L29)
+[transactions/transaction.ts:29](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L29)
 
 ## Methods
 
 ### getCustomMessage
 
-▸ **getCustomMessage**(`message`): `Promise`<[`CustomMessage`](../interfaces/CustomMessage.md)\>
+▸ **getCustomMessage**(`message`): [`CustomMessage`](../interfaces/CustomMessage.md)
 
 #### Parameters
 
@@ -48,11 +47,11 @@
 
 #### Returns
 
-`Promise`<[`CustomMessage`](../interfaces/CustomMessage.md)\>
+[`CustomMessage`](../interfaces/CustomMessage.md)
 
 #### Defined in
 
-[transactions/transaction.ts:46](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L46)
+[transactions/transaction.ts:42](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L42)
 
 ___
 
@@ -76,24 +75,4 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:40](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L40)
-
-___
-
-### sendTest
-
-▸ **sendTest**(`message`): `Promise`<`string`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | [`CustomMessage`](../interfaces/CustomMessage.md) |
-
-#### Returns
-
-`Promise`<`string`\>
-
-#### Defined in
-
-[transactions/transaction.ts:36](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/e9f166c/src/transactions/transaction.ts#L36)
+[transactions/transaction.ts:36](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L36)
