@@ -33,21 +33,17 @@ class Transaction implements DFITransaction {
     this.passphrase = config.passphrase;
   }
 
-  async sendTest(message: CustomMessage): Promise<string> {
-    return await this.compressAndEncryptMessage(message);
-  }
-
   async send(message: CustomMessage): Promise<string> {
     return await this.sendCustomMessage(
       await this.compressAndEncryptMessage(message)
     );
   }
 
-  async getCustomMessage(message: string): Promise<CustomMessage> {
-    return await this.decryptAndDecompressMessage(message);
+  getCustomMessage(message: Buffer): CustomMessage {
+    return this.decryptAndDecompressMessage(message);
   }
 
-  private async sendCustomMessage(message: string): Promise<string> {
+  private async sendCustomMessage(message: Buffer): Promise<string> {
     const feeRateProvider = new WhaleFeeRateProvider(this.client);
     const prevoutProvider = new WhalePrevoutProvider(this.account, 200);
     const builder = new CustomTXBuilder(
@@ -75,12 +71,10 @@ class Transaction implements DFITransaction {
     throw Error("No transcation ID received!");
   }
 
-  private async compressAndEncryptMessage(
-    message: CustomMessage
-  ): Promise<string> {
+  private compressAndEncryptMessage(message: CustomMessage): Buffer {
     // first we will compress the message
     console.log("Compressing message");
-    const compressedData = await MessageCompressor.compress(message);
+    const compressedData = MessageCompressor.compress(message);
     console.log(compressedData);
     // now we will encrypt the message
 
@@ -95,15 +89,13 @@ class Transaction implements DFITransaction {
     return encryptedData;
   }
 
-  private async decryptAndDecompressMessage(
-    message: string
-  ): Promise<CustomMessage> {
+  private decryptAndDecompressMessage(message: Buffer): CustomMessage {
     // first we will decrypt the message
     console.log("decrypting message");
     const decryptedData = MessageEncryptor.decrypt(message, this.passphrase);
     console.log(decryptedData);
     console.log("Decompressing message");
-    const decompressedData = await MessageCompressor.decompress(decryptedData);
+    const decompressedData = MessageCompressor.decompress(decryptedData);
     console.log(decompressedData);
     // now we will encrypt the message
     return decompressedData;
