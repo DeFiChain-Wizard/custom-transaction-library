@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[transactions/transaction.ts:29](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L29)
+[transactions/transaction.ts:29](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2b79e8a/src/transactions/transaction.ts#L29)
 
 ## Methods
 
@@ -51,7 +51,7 @@
 
 #### Defined in
 
-[transactions/transaction.ts:42](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L42)
+[transactions/transaction.ts:42](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2b79e8a/src/transactions/transaction.ts#L42)
 
 ___
 
@@ -75,4 +75,4 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:36](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/77b6bb8/src/transactions/transaction.ts#L36)
+[transactions/transaction.ts:36](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2b79e8a/src/transactions/transaction.ts#L36)
