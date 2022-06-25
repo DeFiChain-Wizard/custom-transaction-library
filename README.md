@@ -77,5 +77,5 @@ eyJ2ZXJzaW9uIjoiMS4wIiwidmF1bHRJZCI6ImRzYWZhc2TMBCIsInBhdXNlIjowLCJjb21wb3VuZGlu
 
 ```ts
 // get the CustomMessage from the passed string.
-const customMessage = transcation.getCustomMessage(theStringFromAbove);
+const customMessage = transaction.getCustomMessage(theStringFromAbove);
 ```
