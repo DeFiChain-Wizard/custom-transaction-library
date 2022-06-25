@@ -11,4 +11,4 @@
 ### Interfaces
 
 - [CustomMessage](interfaces/CustomMessage.md)
-- [TransactionOptions](interfaces/TransactionOptions.md)
+- [TransactionConfig](interfaces/TransactionConfig.md)

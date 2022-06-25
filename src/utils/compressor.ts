@@ -1,6 +1,7 @@
 import { CustomMessage } from "../transactions";
-import { encode, decode } from "@msgpack/msgpack";
-const cjson = require("compressed-json");
+const LZUTF8 = require("lzutf8");
+
+const BASE_ENCODING = "Base64";
 
 class MessageCompressor {
   /**
@@ -9,7 +10,9 @@ class MessageCompressor {
    * @returns The compressed data as string.
    */
   static compress(data: CustomMessage): string {
-    return this.uInt8ArrayToString(encode(cjson.compress(data)));
+    return LZUTF8.compress(JSON.stringify(data), {
+      outputEncoding: BASE_ENCODING,
+    });
   }
 
   /**
@@ -18,9 +21,14 @@ class MessageCompressor {
    * @returns The original Custom Message from the frontend.
    */
   static decompress(data: string): CustomMessage {
-    const uncompressed: any = decode(this.stringToUint8Array(data));
-    const restored = cjson.decompress(uncompressed);
-    if (this.isCustomMessage(restored)) return restored;
+    //const uncompressed: any = decode(this.stringToUint8Array(data));
+    //const restored = cjson.decompress(uncompressed);
+    const uncompressed = LZUTF8.decompress(data, {
+      inputEncoding: BASE_ENCODING,
+    });
+    console.log("uncompressed", uncompressed);
+    const customMessage = JSON.parse(uncompressed);
+    if (this.isCustomMessage(customMessage)) return customMessage;
     throw new Error(
       "Message decompression failed. The returned object is not a valid message."
     );
@@ -36,24 +44,6 @@ class MessageCompressor {
    */
   private static isCustomMessage(message: any): message is CustomMessage {
     return "version" in message && "vaultId" in message && "rules" in message;
-  }
-
-  /**
-   * Converts a Uint8Array to a string.
-   * @param array The Uint8Array to be converted into a string.
-   * @returns The Uint8Array as string.
-   */
-  private static uInt8ArrayToString(array: Uint8Array): string {
-    return array.toString();
-  }
-
-  /**
-   * Converts a string to a Uint8Array.
-   * @param array The string to be converted into a Uint8Array.
-   * @returns The string as Uint8Array
-   */
-  private static stringToUint8Array(string: string): Uint8Array {
-    return Uint8Array.from(string.split(",").map((x) => parseInt(x, 10)));
   }
 }
 

@@ -12,6 +12,9 @@ import {
 import { BigNumber } from "@defichain/jellyfish-api-core";
 import { WhaleApiClient } from "@defichain/whale-api-client";
 
+/**
+ * The Custom Transaction Builder, that actually builds the transaction based on the passed data.
+ */
 class CustomTXBuilder extends P2WPKHTxnBuilder {
   async getCustomTx(data: string, changeScript: Script) {
     const wizardTransactionPrefix = "WzTx";

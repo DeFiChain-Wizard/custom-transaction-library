@@ -2,6 +2,9 @@
 
 # Class: Transaction
 
+The transaction class that offers all methods to send a
+transaction or to read the custom message from a transaction.
+
 ## Implements
 
 - `DFITransaction`
@@ -23,15 +26,17 @@
 
 • **new Transaction**(`config`)
 
+The constructor takes the transaction configuration [TransactionConfig](../interfaces/TransactionConfig.md).
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `config` | [`TransactionOptions`](../interfaces/TransactionOptions.md) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `config` | [`TransactionConfig`](../interfaces/TransactionConfig.md) | The transaction configuration object |
 
 #### Defined in
 
-[transactions/transaction.ts:29](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2b79e8a/src/transactions/transaction.ts#L29)
+[transactions/transaction.ts:41](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d135dca/src/transactions/transaction.ts#L41)
 
 ## Methods
 
@@ -39,19 +44,24 @@
 
 ▸ **getCustomMessage**(`message`): [`CustomMessage`](../interfaces/CustomMessage.md)
 
+Takes the compressed and encrypted message from the transaction and returns the
+decompressed and decrypted [CustomMessage](../interfaces/CustomMessage.md).
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` | The message as extracted from the transaction. |
 
 #### Returns
 
 [`CustomMessage`](../interfaces/CustomMessage.md)
 
+The custom message.
+
 #### Defined in
 
-[transactions/transaction.ts:42](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2b79e8a/src/transactions/transaction.ts#L42)
+[transactions/transaction.ts:66](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d135dca/src/transactions/transaction.ts#L66)
 
 ___
 
@@ -59,15 +69,19 @@ ___
 
 ▸ **send**(`message`): `Promise`<`string`\>
 
+Will compress, encyrpt and send the given custom message.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `message` | [`CustomMessage`](../interfaces/CustomMessage.md) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `message` | [`CustomMessage`](../interfaces/CustomMessage.md) | The [CustomMessage](../interfaces/CustomMessage.md) to send. |
 
 #### Returns
 
 `Promise`<`string`\>
+
+the transaction id
 
 #### Implementation of
 
@@ -75,4 +89,4 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:36](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2b79e8a/src/transactions/transaction.ts#L36)
+[transactions/transaction.ts:53](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d135dca/src/transactions/transaction.ts#L53)

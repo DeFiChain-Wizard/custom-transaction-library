@@ -1,2 +1,2 @@
-export { Transaction, TransactionOptions } from "./transaction";
+export { Transaction, TransactionConfig } from "./transaction";
 export { CustomMessage } from "./message";

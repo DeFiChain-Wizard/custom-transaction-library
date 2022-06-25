@@ -14,35 +14,64 @@ interface DFITransaction {
   send: (message: CustomMessage) => void;
 }
 
-interface TransactionOptions {
+/**
+ * The options that must be passed in order to create a transaction.
+ */
+interface TransactionConfig {
   client: WhaleApiClient;
   account: WhaleWalletAccount;
   network: Network;
-  passphrase: string;
+  passphrase: string[];
 }
 
+/**
+ * The transaction class that offers all methods to send a
+ * transaction or to read the custom message from a transaction.
+ */
 class Transaction implements DFITransaction {
   private readonly client: WhaleApiClient;
   private readonly account: WhaleWalletAccount;
   private readonly network: Network;
-  private readonly passphrase: string;
-  constructor(config: TransactionOptions) {
+  private readonly passphrase: string[];
+  /**
+   * The constructor takes the transaction configuration {@link TransactionConfig}.
+   *
+   * @param config The transaction configuration object
+   */
+  constructor(config: TransactionConfig) {
     this.client = config.client;
     this.account = config.account;
     this.network = config.network;
     this.passphrase = config.passphrase;
   }
 
+  /**
+   * Will compress, encyrpt and send the given custom message.
+   * @param message The {@link CustomMessage} to send.
+   * @returns the transaction id
+   */
   async send(message: CustomMessage): Promise<string> {
     return await this.sendCustomMessage(
       this.compressAndEncryptMessage(message)
     );
   }
 
+  /**
+   * Takes the compressed and encrypted message from the transaction and returns the
+   * decompressed and decrypted {@link CustomMessage}.
+   *
+   * @param message The message as extracted from the transaction.
+   * @returns The custom message.
+   */
   getCustomMessage(message: string): CustomMessage {
     return this.decryptAndDecompressMessage(message);
   }
 
+  /**
+   * Takes the compressed and encrypted message as string and sends it.
+   * @param message The message as prepared string to send.
+   * @returns
+   */
   private async sendCustomMessage(message: string): Promise<string> {
     const feeRateProvider = new WhaleFeeRateProvider(this.client);
     const prevoutProvider = new WhalePrevoutProvider(this.account, 200);
@@ -71,35 +100,31 @@ class Transaction implements DFITransaction {
     throw Error("No transcation ID received!");
   }
 
+  /**
+   * Takes the {@link CustomMessage} and compresses and encrypts it.
+   *
+   * @param message The {@link CustomMessage} to compress and encrypt
+   * @returns the compressed and encrypted message as string
+   */
   private compressAndEncryptMessage(message: CustomMessage): string {
     // first we will compress the message
-    console.log("Compressing message");
     const compressedData = MessageCompressor.compress(message);
-    console.log(compressedData);
     // now we will encrypt the message
-
-    console.log("Encrypting message");
-    const encryptedData = MessageEncryptor.encrypt(
-      compressedData,
-      this.passphrase
-    );
-
-    console.log(encryptedData);
-
-    return encryptedData;
+    return MessageEncryptor.encrypt(compressedData, this.passphrase);
   }
 
+  /**
+   * Takes the compressed and encrypted string from the transaction and returns the {@link CustomMessage}.
+   *
+   * @param message The compressed and encrypted string from the transaction
+   * @returns the uncompressed and decrypted {@link CustomMessage}
+   */
   private decryptAndDecompressMessage(message: string): CustomMessage {
     // first we will decrypt the message
-    console.log("decrypting message");
     const decryptedData = MessageEncryptor.decrypt(message, this.passphrase);
-    console.log(decryptedData);
-    console.log("Decompressing message");
-    const decompressedData = MessageCompressor.decompress(decryptedData);
-    console.log(decompressedData);
-    // now we will encrypt the message
-    return decompressedData;
+    // now we will decompress the message
+    return MessageCompressor.decompress(decryptedData);
   }
 }
 
-export { Transaction, TransactionOptions };
+export { Transaction, TransactionConfig };
