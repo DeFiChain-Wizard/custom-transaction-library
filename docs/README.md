@@ -35,7 +35,7 @@ const config: TransactionConfig = {
   passphrase: this.passphrase // the passphrase as string array
 };
 
-// Create the transaction (it will automaticall compress and encrypt the message)
+// Create the transaction (it will automatically compress and encrypt the message)
 const transaction = new Transaction(config);
 ```
 

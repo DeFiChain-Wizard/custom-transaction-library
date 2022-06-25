@@ -36,7 +36,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:41](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7e6d72c/src/transactions/transaction.ts#L41)
+[transactions/transaction.ts:41](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/079d125/src/transactions/transaction.ts#L41)
 
 ## Methods
 
@@ -61,7 +61,7 @@ The custom message.
 
 #### Defined in
 
-[transactions/transaction.ts:66](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7e6d72c/src/transactions/transaction.ts#L66)
+[transactions/transaction.ts:66](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/079d125/src/transactions/transaction.ts#L66)
 
 ___
 
@@ -89,4 +89,4 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:53](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7e6d72c/src/transactions/transaction.ts#L53)
+[transactions/transaction.ts:53](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/079d125/src/transactions/transaction.ts#L53)
