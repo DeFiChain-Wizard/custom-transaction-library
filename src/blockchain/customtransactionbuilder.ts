@@ -11,15 +11,15 @@ import {
 } from "@defichain/jellyfish-transaction";
 import { BigNumber } from "@defichain/jellyfish-api-core";
 import { WhaleApiClient } from "@defichain/whale-api-client";
+import { WIZARD_TRANSACTION_PREFIX } from "../utils/helpers";
 
 /**
  * The Custom Transaction Builder, that actually builds the transaction based on the passed data.
  */
 class CustomTXBuilder extends P2WPKHTxnBuilder {
   async getCustomTx(data: string, changeScript: Script) {
-    const wizardTransactionPrefix = "WzTx";
     const { prevouts, vin, total } = await this.allPrevouts();
-    const buf = Buffer.from(wizardTransactionPrefix + data);
+    const buf = Buffer.from(WIZARD_TRANSACTION_PREFIX + data);
     const op = new OP_PUSHDATA(buf, "little");
     const deFiOut: Vout = {
       value: new BigNumber(0),

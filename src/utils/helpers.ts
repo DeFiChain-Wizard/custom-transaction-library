@@ -1,9 +1,13 @@
+const WIZARD_TRANSACTION_PREFIX = "WzTx";
+
 /**
- * Checks if a certain String is null or empty.
+ * Removes the {@link WIZARD_TRANSACTION_PREFIX} from the message string.
  *
- * @param value the text to be checked
- * @returns true or false
+ * @param message the message the tx prefix should be removed from.
+ * @returns the new message without the tx prefix.
  */
-const isStringNullOrEmpty = (value: string | string[]): boolean => {
-  return value === undefined || value.length === 0;
+const removeTXPrefix = (message: string): string => {
+  return message.replace(WIZARD_TRANSACTION_PREFIX, "");
 };
+
+export { WIZARD_TRANSACTION_PREFIX, removeTXPrefix };

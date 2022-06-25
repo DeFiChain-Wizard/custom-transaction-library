@@ -21,12 +21,9 @@ class MessageCompressor {
    * @returns The original Custom Message from the frontend.
    */
   static decompress(data: string): CustomMessage {
-    //const uncompressed: any = decode(this.stringToUint8Array(data));
-    //const restored = cjson.decompress(uncompressed);
     const uncompressed = LZUTF8.decompress(data, {
       inputEncoding: BASE_ENCODING,
     });
-    console.log("uncompressed", uncompressed);
     const customMessage = JSON.parse(uncompressed);
     if (this.isCustomMessage(customMessage)) return customMessage;
     throw new Error(
