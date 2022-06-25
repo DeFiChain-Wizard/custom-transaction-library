@@ -28,7 +28,6 @@
         "@defichain/jellyfish-network": "^2.47.0",
         "@defichain/whale-api-client": "^2.47.0",
         "@defichain/whale-api-wallet": "^2.47.0",
-        "@msgpack/msgpack": "^2.7.2",
         "@types/crypto-js": "^4.1.1",
         "crypto-js": "^4.1.1",
         "lzutf8": "^0.6.2"
