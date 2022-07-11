@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[transactions/message.ts:19](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/message.ts#L19)
+[transactions/message.ts:19](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/message.ts#L19)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:18](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/message.ts#L18)
+[transactions/message.ts:18](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/message.ts#L18)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/message.ts#L20)
+[transactions/message.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/message.ts#L20)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/message.ts#L21)
+[transactions/message.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/message.ts#L21)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:22](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/message.ts#L22)
+[transactions/message.ts:22](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/message.ts#L22)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:17](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/message.ts#L17)
+[transactions/message.ts:17](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/message.ts#L17)
 
 ___
 
@@ -86,4 +86,4 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:16](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/message.ts#L16)
+[transactions/message.ts:16](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/message.ts#L16)

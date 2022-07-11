@@ -19,6 +19,7 @@ transaction or to read the custom message from a transaction.
 
 - [getCustomMessage](Transaction.md#getcustommessage)
 - [send](Transaction.md#send)
+- [sendVersion](Transaction.md#sendversion)
 
 ## Constructors
 
@@ -36,13 +37,13 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:41](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/transaction.ts#L41)
+[transactions/transaction.ts:43](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/transaction.ts#L43)
 
 ## Methods
 
 ### getCustomMessage
 
-▸ **getCustomMessage**(`message`): [`CustomMessage`](../interfaces/CustomMessage.md)
+▸ **getCustomMessage**(`message`): [`CustomMessage`](../interfaces/CustomMessage.md) \| `Version`
 
 Takes the compressed and encrypted message from the transaction and returns the
 decompressed and decrypted [CustomMessage](../interfaces/CustomMessage.md).
@@ -55,13 +56,13 @@ decompressed and decrypted [CustomMessage](../interfaces/CustomMessage.md).
 
 #### Returns
 
-[`CustomMessage`](../interfaces/CustomMessage.md)
+[`CustomMessage`](../interfaces/CustomMessage.md) \| `Version`
 
 The custom message.
 
 #### Defined in
 
-[transactions/transaction.ts:66](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/transaction.ts#L66)
+[transactions/transaction.ts:80](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/transaction.ts#L80)
 
 ___
 
@@ -89,4 +90,28 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:53](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5a1e257/src/transactions/transaction.ts#L53)
+[transactions/transaction.ts:67](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/transaction.ts#L67)
+
+___
+
+### sendVersion
+
+▸ **sendVersion**(`version`): `Promise`<`string`\>
+
+Will compress, encyrpt and send the given version message.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `version` | `Version` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+the transaction id
+
+#### Defined in
+
+[transactions/transaction.ts:55](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/transaction.ts#L55)
