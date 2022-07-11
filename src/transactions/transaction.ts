@@ -9,6 +9,8 @@ import { CustomMessage } from "./message";
 import { CustomTXBuilder } from "../blockchain/customtransactionbuilder";
 import { MessageCompressor } from "../utils/compressor";
 import { MessageEncryptor } from "../utils/encryptor";
+import { Version } from "./version";
+import { WIZARD_TRANSACTION_VERSION_PREFIX } from "../utils/helpers";
 
 interface DFITransaction {
   send: (message: CustomMessage) => void;
@@ -46,6 +48,18 @@ class Transaction implements DFITransaction {
   }
 
   /**
+   * Will compress, encyrpt and send the given version message.
+   * @param message The {@link Version} to send.
+   * @returns the transaction id
+   */
+  async sendVersion(version: Version): Promise<string> {
+    return await this.sendCustomMessage(
+      this.compressAndEncryptMessage(version),
+      WIZARD_TRANSACTION_VERSION_PREFIX
+    );
+  }
+
+  /**
    * Will compress, encyrpt and send the given custom message.
    * @param message The {@link CustomMessage} to send.
    * @returns the transaction id
@@ -63,7 +77,7 @@ class Transaction implements DFITransaction {
    * @param message The message as extracted from the transaction.
    * @returns The custom message.
    */
-  getCustomMessage(message: string): CustomMessage {
+  getCustomMessage(message: string): CustomMessage | Version {
     return this.decryptAndDecompressMessage(message);
   }
 
@@ -72,7 +86,10 @@ class Transaction implements DFITransaction {
    * @param message The message as prepared string to send.
    * @returns
    */
-  private async sendCustomMessage(message: string): Promise<string> {
+  private async sendCustomMessage(
+    message: string,
+    prefix?: string
+  ): Promise<string> {
     const feeRateProvider = new WhaleFeeRateProvider(this.client);
     const prevoutProvider = new WhalePrevoutProvider(this.account, 200);
     const builder = new CustomTXBuilder(
@@ -85,7 +102,8 @@ class Transaction implements DFITransaction {
     );
     const txn = await builder.getCustomTx(
       message,
-      await this.account.getScript()
+      await this.account.getScript(),
+      prefix
     );
     const transaction = await builder.sendTransaction({
       txn,
@@ -106,7 +124,7 @@ class Transaction implements DFITransaction {
    * @param message The {@link CustomMessage} to compress and encrypt
    * @returns the compressed and encrypted message as string
    */
-  private compressAndEncryptMessage(message: CustomMessage): string {
+  private compressAndEncryptMessage(message: CustomMessage | Version): string {
     // first we will compress the message
     const compressedData = MessageCompressor.compress(message);
     // now we will encrypt the message
@@ -119,7 +137,9 @@ class Transaction implements DFITransaction {
    * @param message The compressed and encrypted string from the transaction
    * @returns the uncompressed and decrypted {@link CustomMessage}
    */
-  private decryptAndDecompressMessage(message: string): CustomMessage {
+  private decryptAndDecompressMessage(
+    message: string
+  ): CustomMessage | Version {
     // first we will decrypt the message
     const decryptedData = MessageEncryptor.decrypt(message, this.passphrase);
     // now we will decompress the message
