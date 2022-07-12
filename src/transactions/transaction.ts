@@ -10,7 +10,10 @@ import { CustomTXBuilder } from "../blockchain/customtransactionbuilder";
 import { MessageCompressor } from "../utils/compressor";
 import { MessageEncryptor } from "../utils/encryptor";
 import { Version } from "./version";
-import { WIZARD_TRANSACTION_VERSION_PREFIX } from "../utils/helpers";
+import {
+  isVersionMessage,
+  WIZARD_TRANSACTION_VERSION_PREFIX,
+} from "../utils/helpers";
 
 interface DFITransaction {
   send: (message: CustomMessage) => void;
@@ -48,25 +51,14 @@ class Transaction implements DFITransaction {
   }
 
   /**
-   * Will compress, encyrpt and send the given version message.
-   * @param message The {@link Version} to send.
-   * @returns the transaction id
-   */
-  async sendVersion(version: Version): Promise<string> {
-    return await this.sendCustomMessage(
-      this.compressAndEncryptMessage(version),
-      WIZARD_TRANSACTION_VERSION_PREFIX
-    );
-  }
-
-  /**
    * Will compress, encyrpt and send the given custom message.
-   * @param message The {@link CustomMessage} to send.
+   * @param message The {@link CustomMessage} or {@link Version} to send.
    * @returns the transaction id
    */
-  async send(message: CustomMessage): Promise<string> {
+  async send(message: CustomMessage | Version): Promise<string> {
     return await this.sendCustomMessage(
-      this.compressAndEncryptMessage(message)
+      this.compressAndEncryptMessage(message),
+      isVersionMessage(message) ? WIZARD_TRANSACTION_VERSION_PREFIX : undefined
     );
   }
 

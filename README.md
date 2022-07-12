@@ -65,6 +65,20 @@ If you want to see the custom (RAW) transaction just use the following page and 
 
 https://chainz.cryptoid.info/dfi/
 
+## Send a version message to the blockchain
+
+In order to allow the frontend to see what version is installed on the backend, the backend must send a version message to the blockchain every time it starts up.
+
+```ts
+// Create your message to be sent
+const versionMessage: Version = {
+  version: "1.0"
+};
+
+// Send the transaction
+const txId = await transaction.send(message);
+```
+
 ## Convert the extracted message from the transaction
 
 This is needed if you have received a transaction from the blockchain. You can easily pass the extracted string to this function and it will return the `CustomMessage` object (decompressed and decrypted).

@@ -37,7 +37,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:43](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/transaction.ts#L43)
+[transactions/transaction.ts:43](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/ad2bfdc/src/transactions/transaction.ts#L43)
 
 ## Methods
 
@@ -62,7 +62,7 @@ The custom message.
 
 #### Defined in
 
-[transactions/transaction.ts:80](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/transaction.ts#L80)
+[transactions/transaction.ts:80](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/ad2bfdc/src/transactions/transaction.ts#L80)
 
 ___
 
@@ -90,7 +90,7 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:67](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/transaction.ts#L67)
+[transactions/transaction.ts:67](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/ad2bfdc/src/transactions/transaction.ts#L67)
 
 ___
 
@@ -114,4 +114,4 @@ the transaction id
 
 #### Defined in
 
-[transactions/transaction.ts:55](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6299c98/src/transactions/transaction.ts#L55)
+[transactions/transaction.ts:55](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/ad2bfdc/src/transactions/transaction.ts#L55)
