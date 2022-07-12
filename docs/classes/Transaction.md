@@ -36,7 +36,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:46](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/edcdf01/src/transactions/transaction.ts#L46)
+[transactions/transaction.ts:47](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/transaction.ts#L47)
 
 ## Methods
 
@@ -61,7 +61,7 @@ The custom message.
 
 #### Defined in
 
-[transactions/transaction.ts:72](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/edcdf01/src/transactions/transaction.ts#L72)
+[transactions/transaction.ts:75](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/transaction.ts#L75)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **send**(`message`): `Promise`<`string`\>
 
-Will compress, encyrpt and send the given custom message.
+Will compress, encrypt and send the given custom message.
 
 #### Parameters
 
@@ -89,4 +89,4 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:58](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/edcdf01/src/transactions/transaction.ts#L58)
+[transactions/transaction.ts:59](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/transaction.ts#L59)
