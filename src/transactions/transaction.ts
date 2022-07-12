@@ -12,6 +12,7 @@ import { MessageEncryptor } from "../utils/encryptor";
 import { Version } from "./version";
 import {
   isVersionMessage,
+  WIZARD_TRANSACTION_CONFIG_PREFIX,
   WIZARD_TRANSACTION_VERSION_PREFIX,
 } from "../utils/helpers";
 
@@ -51,14 +52,16 @@ class Transaction implements DFITransaction {
   }
 
   /**
-   * Will compress, encyrpt and send the given custom message.
+   * Will compress, encrypt and send the given custom message.
    * @param message The {@link CustomMessage} or {@link Version} to send.
    * @returns the transaction id
    */
   async send(message: CustomMessage | Version): Promise<string> {
     return await this.sendCustomMessage(
       this.compressAndEncryptMessage(message),
-      isVersionMessage(message) ? WIZARD_TRANSACTION_VERSION_PREFIX : undefined
+      isVersionMessage(message)
+        ? WIZARD_TRANSACTION_VERSION_PREFIX
+        : WIZARD_TRANSACTION_CONFIG_PREFIX
     );
   }
 
@@ -107,7 +110,7 @@ class Transaction implements DFITransaction {
 
     if (transaction.vin.length > 0)
       return new String(transaction.vin[0].txid).toString();
-    throw Error("No transcation ID received!");
+    throw Error("No transaction ID received!");
   }
 
   /**
