@@ -19,7 +19,6 @@ transaction or to read the custom message from a transaction.
 
 - [getCustomMessage](Transaction.md#getcustommessage)
 - [send](Transaction.md#send)
-- [sendVersion](Transaction.md#sendversion)
 
 ## Constructors
 
@@ -37,7 +36,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:43](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/ad2bfdc/src/transactions/transaction.ts#L43)
+[transactions/transaction.ts:46](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/edcdf01/src/transactions/transaction.ts#L46)
 
 ## Methods
 
@@ -62,7 +61,7 @@ The custom message.
 
 #### Defined in
 
-[transactions/transaction.ts:80](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/ad2bfdc/src/transactions/transaction.ts#L80)
+[transactions/transaction.ts:72](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/edcdf01/src/transactions/transaction.ts#L72)
 
 ___
 
@@ -76,7 +75,7 @@ Will compress, encyrpt and send the given custom message.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `message` | [`CustomMessage`](../interfaces/CustomMessage.md) | The [CustomMessage](../interfaces/CustomMessage.md) to send. |
+| `message` | [`CustomMessage`](../interfaces/CustomMessage.md) \| `Version` | The [CustomMessage](../interfaces/CustomMessage.md) or {@link Version} to send. |
 
 #### Returns
 
@@ -90,28 +89,4 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:67](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/ad2bfdc/src/transactions/transaction.ts#L67)
-
-___
-
-### sendVersion
-
-▸ **sendVersion**(`version`): `Promise`<`string`\>
-
-Will compress, encyrpt and send the given version message.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `version` | `Version` |
-
-#### Returns
-
-`Promise`<`string`\>
-
-the transaction id
-
-#### Defined in
-
-[transactions/transaction.ts:55](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/ad2bfdc/src/transactions/transaction.ts#L55)
+[transactions/transaction.ts:58](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/edcdf01/src/transactions/transaction.ts#L58)
