@@ -27,7 +27,14 @@ const removeTXPrefix = (message: string): string => {
  * @returns true if it's a Custom Message
  */
 const isCustomMessage = (message: any): message is CustomMessage => {
-  return "version" in message && "vaultId" in message && "rules" in message;
+  return (
+    "version" in message &&
+    "vaultId" in message &&
+    "rules" in message &&
+    "pause" in message &&
+    "compounding" in message &&
+    "poolpairs" in message
+  );
 };
 
 /**
@@ -40,7 +47,12 @@ const isCustomMessage = (message: any): message is CustomMessage => {
  */
 const isVersionMessage = (message: any): message is Version => {
   return (
-    "version" in message && !("vaultId" in message) && !("rules" in message)
+    "version" in message &&
+    !("vaultId" in message) &&
+    !("rules" in message) &&
+    !("pause" in message) &&
+    !("compounding" in message) &&
+    !("poolpairs" in message)
   );
 };
 
