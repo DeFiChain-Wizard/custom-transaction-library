@@ -94,7 +94,7 @@ describe("Testing TS type guards", () => {
   });
 });
 
-describe("Testing transcation identifier removal", () => {
+describe("Testing transaction identifier removal", () => {
   test("remove WzTx", () => {
     const testString = "ThisIsJustATest";
     let testStringWithTxId = `${WIZARD_TRANSACTION_CONFIG_PREFIX}${testString}`;

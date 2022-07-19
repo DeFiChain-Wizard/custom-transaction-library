@@ -16,13 +16,11 @@ import {
   WIZARD_TRANSACTION_VERSION_PREFIX,
 } from "../utils/helpers";
 
+/**
+ * The interface for the transaction, which defines the methods to be exposed.
+ */
 interface DFITransaction {
   send: (message: CustomMessage) => void;
-}
-
-interface DecryptedConfig {
-  blockTime: number;
-  config: CustomMessage;
 }
 
 /**
@@ -69,30 +67,6 @@ class Transaction implements DFITransaction {
         : WIZARD_TRANSACTION_CONFIG_PREFIX
     );
   }
-
-  /**
-   * Retrieves the last config for this bot. This could either be a {{@link CustomMessage}} or a {{@link Version}}.
-   * @returns The latest transaction found for this address
-   */
-  /*
-  async findLastBlockchainConfiguration(): Promise<DecryptedConfig | null> {
-    const address = await this.account.getAddress();
-
-    // read all transactions for the configured address and only keep VOUT transactions
-    const myVoutTXs = (
-      await this.client.address.listTransaction(address, 99999999)
-    ).filter((tx) => tx.type === "vout");
-
-    // loop over all VOUT transactions
-    for (const transaction of myVoutTXs) {
-      // read details of transaction
-      const transactionVouts = await this.client.transactions.getVouts(transaction.txid)
-      );
-    }
-
-    return null;
-  }
-  */
 
   /**
    * Takes the compressed and encrypted message from the transaction and returns the
@@ -171,4 +145,4 @@ class Transaction implements DFITransaction {
   }
 }
 
-export { Transaction, TransactionConfig, DecryptedConfig };
+export { Transaction, TransactionConfig };

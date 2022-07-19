@@ -15,10 +15,20 @@ transaction or to read the custom message from a transaction.
 
 - [constructor](Transaction.md#constructor)
 
+### Properties
+
+- [account](Transaction.md#account)
+- [client](Transaction.md#client)
+- [network](Transaction.md#network)
+- [passphrase](Transaction.md#passphrase)
+
 ### Methods
 
+- [compressAndEncryptMessage](Transaction.md#compressandencryptmessage)
+- [decryptAndDecompressMessage](Transaction.md#decryptanddecompressmessage)
 - [getCustomMessage](Transaction.md#getcustommessage)
 - [send](Transaction.md#send)
+- [sendCustomMessage](Transaction.md#sendcustommessage)
 
 ## Constructors
 
@@ -36,9 +46,97 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:47](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/transaction.ts#L47)
+[transactions/transaction.ts:50](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L50)
+
+## Properties
+
+### account
+
+• `Private` `Readonly` **account**: `WhaleWalletAccount`
+
+#### Defined in
+
+[transactions/transaction.ts:42](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L42)
+
+___
+
+### client
+
+• `Private` `Readonly` **client**: `WhaleApiClient`
+
+#### Defined in
+
+[transactions/transaction.ts:41](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L41)
+
+___
+
+### network
+
+• `Private` `Readonly` **network**: `Network`
+
+#### Defined in
+
+[transactions/transaction.ts:43](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L43)
+
+___
+
+### passphrase
+
+• `Private` `Readonly` **passphrase**: `string`[]
+
+#### Defined in
+
+[transactions/transaction.ts:44](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L44)
 
 ## Methods
+
+### compressAndEncryptMessage
+
+▸ `Private` **compressAndEncryptMessage**(`message`): `string`
+
+Takes the [CustomMessage](../interfaces/CustomMessage.md) and compresses and encrypts it.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `message` | [`CustomMessage`](../interfaces/CustomMessage.md) \| `Version` | The [CustomMessage](../interfaces/CustomMessage.md) to compress and encrypt |
+
+#### Returns
+
+`string`
+
+the compressed and encrypted message as string
+
+#### Defined in
+
+[transactions/transaction.ts:125](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L125)
+
+___
+
+### decryptAndDecompressMessage
+
+▸ `Private` **decryptAndDecompressMessage**(`message`): [`CustomMessage`](../interfaces/CustomMessage.md) \| `Version`
+
+Takes the compressed and encrypted string from the transaction and returns the [CustomMessage](../interfaces/CustomMessage.md).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` | The compressed and encrypted string from the transaction |
+
+#### Returns
+
+[`CustomMessage`](../interfaces/CustomMessage.md) \| `Version`
+
+the uncompressed and decrypted [CustomMessage](../interfaces/CustomMessage.md)
+
+#### Defined in
+
+[transactions/transaction.ts:138](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L138)
+
+___
 
 ### getCustomMessage
 
@@ -61,7 +159,7 @@ The custom message.
 
 #### Defined in
 
-[transactions/transaction.ts:75](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/transaction.ts#L75)
+[transactions/transaction.ts:78](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L78)
 
 ___
 
@@ -75,7 +173,7 @@ Will compress, encrypt and send the given custom message.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `message` | [`CustomMessage`](../interfaces/CustomMessage.md) \| `Version` | The [CustomMessage](../interfaces/CustomMessage.md) or {@link Version} to send. |
+| `message` | [`CustomMessage`](../interfaces/CustomMessage.md) \| `Version` | The [CustomMessage](../interfaces/CustomMessage.md) or Version to send. |
 
 #### Returns
 
@@ -89,4 +187,27 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:59](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/transaction.ts#L59)
+[transactions/transaction.ts:62](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L62)
+
+___
+
+### sendCustomMessage
+
+▸ `Private` **sendCustomMessage**(`message`, `prefix?`): `Promise`<`string`\>
+
+Takes the compressed and encrypted message as string and sends it.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `message` | `string` | The message as prepared string to send. |
+| `prefix?` | `string` | - |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[transactions/transaction.ts:87](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/f45f7c2/src/transactions/transaction.ts#L87)
