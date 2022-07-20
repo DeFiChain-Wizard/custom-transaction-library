@@ -8,7 +8,6 @@ interface CustomMessageRules {
   keepMaxRatio: number;
 }
 
-}
 interface CustomMessage {
   version: string;
   vaultId: string;
