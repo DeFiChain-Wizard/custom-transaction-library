@@ -12,6 +12,7 @@
 
 - [address](BlockScanner.md#address)
 - [client](BlockScanner.md#client)
+- [lastConfigBlock](BlockScanner.md#lastconfigblock)
 
 ### Methods
 
@@ -33,7 +34,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-blockchain/blockscanner.ts:24
+[blockchain/blockscanner.ts:34](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L34)
 
 ## Properties
 
@@ -43,7 +44,7 @@ blockchain/blockscanner.ts:24
 
 #### Defined in
 
-blockchain/blockscanner.ts:17
+[blockchain/blockscanner.ts:26](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L26)
 
 ___
 
@@ -53,13 +54,23 @@ ___
 
 #### Defined in
 
-blockchain/blockscanner.ts:16
+[blockchain/blockscanner.ts:25](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L25)
+
+___
+
+### lastConfigBlock
+
+• `Private` `Readonly` **lastConfigBlock**: `number`
+
+#### Defined in
+
+[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L27)
 
 ## Methods
 
 ### findLastBlockchainConfiguration
 
-▸ **findLastBlockchainConfiguration**(`numberOfTransactions?`): `Promise`<``null`` \| `DecryptedConfig`\>
+▸ **findLastBlockchainConfiguration**(`numberOfTransactions?`): `Promise`<`undefined` \| `TransactionMessage`\>
 
 Retrieves the last config for this bot. This could either be a [CustomMessage](../interfaces/CustomMessage.md) or a Version.
 
@@ -67,14 +78,14 @@ Retrieves the last config for this bot. This could either be a [CustomMessage](.
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `numberOfTransactions` | `number` | `500` | The number of transactions to check back in one rush (paging) |
+| `numberOfTransactions` | `number` | `200` | The number of transactions to check back in one rush (paging) |
 
 #### Returns
 
-`Promise`<``null`` \| `DecryptedConfig`\>
+`Promise`<`undefined` \| `TransactionMessage`\>
 
 The latest transaction found for this address
 
 #### Defined in
 
-blockchain/blockscanner.ts:35
+[blockchain/blockscanner.ts:46](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L46)

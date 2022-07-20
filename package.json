@@ -25,9 +25,9 @@
     },
     "homepage": "https://github.com/DeFiChain-Wizard/custom-transaction-library#readme",
     "dependencies": {
-        "@defichain/jellyfish-network": "^2.52.2",
-        "@defichain/whale-api-client": "^2.52.2",
-        "@defichain/whale-api-wallet": "^2.52.2",
+        "@defichain/jellyfish-network": "^2.53.0",
+        "@defichain/whale-api-client": "^2.53.0",
+        "@defichain/whale-api-wallet": "^2.53.0",
         "@types/crypto-js": "^4.1.1",
         "async-await-retry": "^2.0.0",
         "crypto-js": "^4.1.1",

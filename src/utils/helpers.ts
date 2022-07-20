@@ -19,6 +19,14 @@ const removeTXPrefix = (message: string): string => {
 };
 
 /**
+ * Checks if a given transaction message is using one of the prefixes.
+ * TODO: Implement
+ *  */
+const isWizardMessage = (message: string): boolean => {
+  return true;
+};
+
+/**
  * This internal type guard checks if the decompressed message is of type {@link CustomMessage}.
  *
  * For interoperability it only checks for three members.
