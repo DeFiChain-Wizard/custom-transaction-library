@@ -137,9 +137,7 @@ class Transaction implements DFITransaction {
       client: this.client,
     }); //
 
-    if (transaction.vin.length > 0)
-      return new String(transaction.vin[0].txid).toString();
-    throw Error("No transaction ID received!");
+    return transaction.txId;
   }
 
   /**
