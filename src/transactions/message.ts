@@ -8,9 +8,6 @@ interface CustomMessageRules {
   keepMaxRatio: number;
 }
 
-interface CustomMessageTelegram {
-  key: string;
-  receiver: string;
 }
 interface CustomMessage {
   version: string;
@@ -19,7 +16,6 @@ interface CustomMessage {
   compounding: CustomMessageCompounding;
   poolpairs: { [key: string]: number }; // arbitrary number of dTokens as Keys with the ratio number as value
   rules: CustomMessageRules;
-  telegram: CustomMessageTelegram;
 }
 
 export { CustomMessage };
