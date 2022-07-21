@@ -26,10 +26,9 @@ jobs:
        - uses: mstachniuk/ci-skip@v1
          with:
           commit-filter: "autobump"
-
+       - run: |
+             echo PR_ACTION=`jq '.action' $GITHUB_EVENT_PATH ` >> $GITHUB_ENV
        - name: Autobump & Publish
-         env:
-          PR_ACTION: ${{ jq '.action' $GITHUB_EVENT_PATH }}
          if: ${{ env.CI_SKIP == 'false' }}
          uses: hedia-team/autobump-and-publish@master
          with:
