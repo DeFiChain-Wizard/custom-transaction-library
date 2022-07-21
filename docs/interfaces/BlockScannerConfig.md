@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[blockchain/blockscanner.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5876e6/src/blockchain/blockscanner.ts#L21)
+[blockchain/blockscanner.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/a7a7501/src/blockchain/blockscanner.ts#L21)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5876e6/src/blockchain/blockscanner.ts#L20)
+[blockchain/blockscanner.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/a7a7501/src/blockchain/blockscanner.ts#L20)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:22](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5876e6/src/blockchain/blockscanner.ts#L22)
+[blockchain/blockscanner.ts:22](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/a7a7501/src/blockchain/blockscanner.ts#L22)
