@@ -26,10 +26,9 @@ const removeTXPrefix = (message: string): string => {
  * @returns The HEX string for a given ASCII String.
  */
 const asciiToHex = (ascii: string): string => {
-  var arr1 = [];
-  for (var n = 0, l = ascii.length; n < l; n++) {
-    var hex = Number(ascii.charCodeAt(n)).toString(16);
-    arr1.push(hex);
+  const arr1 = [];
+  for (let n = 0, l = ascii.length; n < l; n++) {
+    arr1.push(Number(ascii.charCodeAt(n)).toString(16));
   }
   return arr1.join("");
 };
