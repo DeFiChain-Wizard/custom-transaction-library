@@ -1,0 +1,41 @@
+[@defichainwizard/custom-transactions](../README.md) / [Exports](../modules.md) / BlockScannerConfig
+
+# Interface: BlockScannerConfig
+
+## Table of contents
+
+### Properties
+
+- [address](BlockScannerConfig.md#address)
+- [client](BlockScannerConfig.md#client)
+- [lastConfigBlock](BlockScannerConfig.md#lastconfigblock)
+
+## Properties
+
+### address
+
+• **address**: `string`
+
+#### Defined in
+
+[blockchain/blockscanner.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L20)
+
+___
+
+### client
+
+• **client**: `WhaleApiClient`
+
+#### Defined in
+
+[blockchain/blockscanner.ts:19](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L19)
+
+___
+
+### lastConfigBlock
+
+• **lastConfigBlock**: `number`
+
+#### Defined in
+
+[blockchain/blockscanner.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L21)
