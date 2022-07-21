@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed, opened, reopened, synchronize]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+  
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+       - uses: mstachniuk/ci-skip@v1
+         with:
+          commit-filter: "autobump"
+
+       - name: Autobump & Publish
+         env:
+          PR_ACTION: ${{ "$(jq '.action' $GITHUB_EVENT_PATH)" }}
+         if: ${{ env.CI_SKIP == 'false' }}
+         uses: hedia-team/autobump-and-publish@master
+         with:
+            label: ${{ toJson(github.event.pull_request.labels.*.name) }}
+            npm-token: ${{ env.NPM_TOKEN }}
+            issue-number: ${{ github.event.number }}
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            is-post-merge: ${{ env.PR_ACTION == "closed" }}
