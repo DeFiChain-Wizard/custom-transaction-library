@@ -1,5 +1,6 @@
 import { ApiPagedResponse, WhaleApiClient } from "@defichain/whale-api-client";
 import { AddressActivity } from "@defichain/whale-api-client/dist/api/address";
+import { isWizardMessage } from "../utils/helpers";
 
 /**
  * The transaction message contains the following properties
@@ -40,19 +41,19 @@ class BlockScanner {
   /**
    * Retrieves the last config for this bot. This could either be a {@link CustomMessage} or a {@link Version}.
    *
+   * It will return UNDEFINED if:
+   *
+   * - no custom message was found at all
+   * - no custom message was found since last config block
+   *
    * @param numberOfTransactions The number of transactions to check back in one rush (paging)
-   * @returns The latest transaction found for this address
+   * @returns The latest transaction found for this address, with current block height, the message and the lastConfigBlock.
    */
-  async findLastBlockchainConfiguration(
+  async findLastWizardConfiguration(
     numberOfTransactions = 200
   ): Promise<TransactionMessage | undefined> {
     let next: string | undefined;
     let myTXs: ApiPagedResponse<AddressActivity>;
-    /* let txMessage: TransactionMessage = {
-      blockTime: 0,
-      message: "", // encrypted and compressed message as String
-      lastConfigBlock: 0,
-    };*/
     let transactionBlock = 0;
     do {
       // get all transactions (paged)
@@ -67,35 +68,36 @@ class BlockScanner {
 
       // iterate through the relevant vout transactions (filtered by nulldata type && config message)
       for (const transaction of myVoutTXs) {
-        let wizardTransactions = (
-          await this.client.transactions.getVouts(transaction.txid)
-        ).filter(
-          (vout) =>
-            vout.script.type === "nulldata" &&
-            // use REGEX for that (helper function)
-            vout.script.hex.toString().substring(10).startsWith("577a5478")
-        );
-
-        // loop through the existing wizard transactions
-        for (const transactionVout of wizardTransactions) {
-          console.log(transactionVout);
-        }
-
         transactionBlock = transaction.block.height;
-        console.log("Transaction block: ", transactionBlock);
 
         // if we're in a block that we've already scanned last time, let's stop and don't return anything
-        if (transactionBlock === this.lastConfigBlock) {
+        if (transactionBlock <= this.lastConfigBlock) {
+          console.debug(
+            "Stopping since there is no new config based on your config."
+          );
           return undefined;
         }
+        let latestWizardTransactions = (
+          await this.client.transactions.getVouts(transaction.txid)
+        ).filter(
+          (vout) => vout.script.type === "nulldata" && isWizardMessage(vout)
+        );
+
+        // no custom message found
+        if (latestWizardTransactions.length === 0) {
+          return undefined;
+        }
+
+        return {
+          blockTime: (await this.client.stats.get()).count.blocks,
+          message: latestWizardTransactions[0].script.hex.toString(), // encrypted and compressed message as String
+          lastConfigBlock: transactionBlock,
+        };
       }
 
-      // ....
-      // .... Check for WZ Config and return if found
-      // ....
       next = myTXs.nextToken;
-      // only scan until the block that we've checked last time
-    } while (transactionBlock !== this.lastConfigBlock && myTXs.hasNext);
+      // only continue scan if there are more pages
+    } while (myTXs.hasNext);
 
     return undefined;
   }

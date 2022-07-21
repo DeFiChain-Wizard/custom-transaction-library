@@ -1,3 +1,4 @@
+import { TransactionVout } from "@defichain/whale-api-client/dist/api/transactions";
 import { CustomMessage } from "../transactions";
 import { Version } from "../transactions/version";
 
@@ -19,11 +20,33 @@ const removeTXPrefix = (message: string): string => {
 };
 
 /**
+ * Converts a given ASCII String to HEX.
+ *
+ * @param ascii The ASCII string to convert to a HEX String
+ * @returns The HEX string for a given ASCII String.
+ */
+const asciiToHex = (ascii: string): string => {
+  var arr1 = [];
+  for (var n = 0, l = ascii.length; n < l; n++) {
+    var hex = Number(ascii.charCodeAt(n)).toString(16);
+    arr1.push(hex);
+  }
+  return arr1.join("");
+};
+
+/**
  * Checks if a given transaction message is using one of the prefixes.
- * TODO: Implement
- *  */
-const isWizardMessage = (message: string): boolean => {
-  return true;
+ * It will just check for the prefixes.
+ *
+ * */
+const isWizardMessage = (transaction: TransactionVout): boolean => {
+  const regex = new RegExp(
+    `^.{10}(${asciiToHex(WIZARD_TRANSACTION_CONFIG_PREFIX)}|${asciiToHex(
+      WIZARD_TRANSACTION_VERSION_PREFIX
+    )})`,
+    "gmi"
+  );
+  return regex.test(transaction.script.hex.toString());
 };
 
 /**
@@ -70,4 +93,5 @@ export {
   removeTXPrefix,
   isCustomMessage,
   isVersionMessage,
+  isWizardMessage,
 };

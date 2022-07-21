@@ -16,7 +16,7 @@
 
 ### Methods
 
-- [findLastBlockchainConfiguration](BlockScanner.md#findlastblockchainconfiguration)
+- [findLastWizardConfiguration](BlockScanner.md#findlastwizardconfiguration)
 
 ## Constructors
 
@@ -34,7 +34,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[blockchain/blockscanner.ts:34](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L34)
+[blockchain/blockscanner.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L35)
 
 ## Properties
 
@@ -44,7 +44,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[blockchain/blockscanner.ts:26](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L26)
+[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L27)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:25](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L25)
+[blockchain/blockscanner.ts:26](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L26)
 
 ___
 
@@ -64,15 +64,20 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L27)
+[blockchain/blockscanner.ts:28](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L28)
 
 ## Methods
 
-### findLastBlockchainConfiguration
+### findLastWizardConfiguration
 
-▸ **findLastBlockchainConfiguration**(`numberOfTransactions?`): `Promise`<`undefined` \| `TransactionMessage`\>
+▸ **findLastWizardConfiguration**(`numberOfTransactions?`): `Promise`<`undefined` \| `TransactionMessage`\>
 
 Retrieves the last config for this bot. This could either be a [CustomMessage](../interfaces/CustomMessage.md) or a Version.
+
+It will return UNDEFINED if:
+
+- no custom message was found at all
+- no custom message was found since last config block
 
 #### Parameters
 
@@ -84,8 +89,8 @@ Retrieves the last config for this bot. This could either be a [CustomMessage](.
 
 `Promise`<`undefined` \| `TransactionMessage`\>
 
-The latest transaction found for this address
+The latest transaction found for this address, with current block height, the message and the lastConfigBlock.
 
 #### Defined in
 
-[blockchain/blockscanner.ts:46](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/101fe8f/src/blockchain/blockscanner.ts#L46)
+[blockchain/blockscanner.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L52)
