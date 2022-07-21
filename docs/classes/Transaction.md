@@ -88,6 +88,7 @@ ___
 
 [transactions/transaction.ts:44](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/transactions/transaction.ts#L44)
 
+
 ## Methods
 
 ### compressAndEncryptMessage
@@ -211,3 +212,4 @@ Takes the compressed and encrypted message as string and sends it.
 #### Defined in
 
 [transactions/transaction.ts:87](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/transactions/transaction.ts#L87)
+

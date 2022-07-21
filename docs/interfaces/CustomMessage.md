@@ -10,7 +10,6 @@
 - [pause](CustomMessage.md#pause)
 - [poolpairs](CustomMessage.md#poolpairs)
 - [rules](CustomMessage.md#rules)
-- [telegram](CustomMessage.md#telegram)
 - [vaultId](CustomMessage.md#vaultid)
 - [version](CustomMessage.md#version)
 
@@ -46,6 +45,7 @@ ___
 
 #### Defined in
 
+
 [transactions/message.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/transactions/message.ts#L20)
 
 ___
@@ -67,6 +67,7 @@ ___
 #### Defined in
 
 [transactions/message.ts:22](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/transactions/message.ts#L22)
+
 
 ___
 
