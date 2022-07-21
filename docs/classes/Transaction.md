@@ -88,6 +88,7 @@ ___
 
 [transactions/transaction.ts:44](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/transactions/transaction.ts#L44)
 
+
 ## Methods
 
 ### compressAndEncryptMessage
