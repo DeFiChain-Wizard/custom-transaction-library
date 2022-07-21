@@ -65,7 +65,7 @@ class BlockScanner {
       );
 
       // only check vout transactions - we don't care about others
-      let myVoutTXs = myTXs.filter((tx) => tx.type === "vout");
+      const myVoutTXs = myTXs.filter((tx) => tx.type === "vout");
 
       // iterate through the relevant vout transactions (filtered by nulldata type && config message)
       for (const transaction of myVoutTXs) {
@@ -79,21 +79,19 @@ class BlockScanner {
           return undefined;
         }
 
-        // get all vout transaction that contain a message with one of our wizard prefixes
-        let latestWizardTransactions = (
+        // get latest transaction that contains a message with one of our wizard prefixes
+        const latestWizardTransaction = (
           await this.client.transactions.getVouts(transaction.txid)
-        ).filter(
+        ).find(
           (vout) => vout.script.type === "nulldata" && isWizardMessage(vout)
         );
 
-        // no custom message found
-        if (latestWizardTransactions.length === 0) {
-          return undefined;
-        }
+        // no custom message found - return undefined
+        if (!latestWizardTransaction) return latestWizardTransaction;
 
         return {
           blockTime: (await this.client.stats.get()).count.blocks,
-          message: latestWizardTransactions[0].script.hex.toString(), // encrypted and compressed message as String
+          message: latestWizardTransaction.script.hex.toString(), // encrypted and compressed message as String
           lastConfigBlock: transactionBlock,
         };
       }

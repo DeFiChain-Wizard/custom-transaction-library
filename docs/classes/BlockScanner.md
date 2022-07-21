@@ -2,6 +2,8 @@
 
 # Class: BlockScanner
 
+Will scan for blocks e.g. to search for transactions.
+
 ## Table of contents
 
 ### Constructors
@@ -34,7 +36,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[blockchain/blockscanner.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L35)
+[blockchain/blockscanner.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L35)
 
 ## Properties
 
@@ -44,7 +46,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L27)
+[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L27)
 
 ___
 
@@ -54,7 +56,7 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:26](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L26)
+[blockchain/blockscanner.ts:26](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L26)
 
 ___
 
@@ -64,7 +66,7 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:28](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L28)
+[blockchain/blockscanner.ts:28](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L28)
 
 ## Methods
 
@@ -93,4 +95,4 @@ The latest transaction found for this address, with current block height, the me
 
 #### Defined in
 
-[blockchain/blockscanner.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2f4d640/src/blockchain/blockscanner.ts#L52)
+[blockchain/blockscanner.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L52)
