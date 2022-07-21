@@ -8,7 +8,6 @@ import { isWizardMessage } from "../utils/helpers";
  * - blockTime: Time to wait
  * - message: The message as extracted from the transaction
  * - theConfigBlock: So that we don't have to check all transactions - we just go back to the last block that contained the last config
- *
  */
 interface TransactionMessage {
   blockTime: number;
@@ -22,6 +21,7 @@ interface BlockScannerConfig {
   lastConfigBlock: number;
 }
 
+/** Will scan for blocks e.g. to search for transactions. */
 class BlockScanner {
   private readonly client: WhaleApiClient;
   private readonly address: string;
@@ -55,6 +55,7 @@ class BlockScanner {
     let next: string | undefined;
     let myTXs: ApiPagedResponse<AddressActivity>;
     let transactionBlock = 0;
+
     do {
       // get all transactions (paged)
       myTXs = await this.client.address.listTransaction(
@@ -77,6 +78,8 @@ class BlockScanner {
           );
           return undefined;
         }
+
+        // get all vout transaction that contain a message with one of our wizard prefixes
         let latestWizardTransactions = (
           await this.client.transactions.getVouts(transaction.txid)
         ).filter(
@@ -96,7 +99,6 @@ class BlockScanner {
       }
 
       next = myTXs.nextToken;
-      // only continue scan if there are more pages
     } while (myTXs.hasNext);
 
     return undefined;
