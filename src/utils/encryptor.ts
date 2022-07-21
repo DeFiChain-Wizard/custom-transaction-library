@@ -20,11 +20,11 @@ class MessageEncryptor {
    * @returns The unencrypted string.
    */
   static decrypt(data: string, passphrase: string[]): string {
-    let decData = CryptoJS.AES.decrypt(
+    const decData = CryptoJS.AES.decrypt(
       removeTXPrefix(data),
       passphrase.join("")
     );
-    let bytes = decData.toString(CryptoJS.enc.Utf8);
+    const bytes = decData.toString(CryptoJS.enc.Utf8);
     return bytes;
   }
 }

@@ -1,5 +1,6 @@
 import { ApiPagedResponse, WhaleApiClient } from "@defichain/whale-api-client";
 import { AddressActivity } from "@defichain/whale-api-client/dist/api/address";
+import { Block } from "@defichain/whale-api-client/dist/api/blocks";
 import { isWizardMessage } from "../utils/helpers";
 
 /**
@@ -39,6 +40,22 @@ class BlockScanner {
   }
 
   /**
+   * Returns the current block.
+   * @returns the current block.
+   */
+  async getCurrentBlock(): Promise<Block> {
+    return this.client.blocks.get(`${await this.getBlockHeight()}`);
+  }
+
+  /**
+   * Returns the current block height.
+   * @returns the current block height.
+   */
+  async getBlockHeight(): Promise<number> {
+    return (await this.client.stats.get()).count.blocks;
+  }
+
+  /**
    * Retrieves the last config for this bot. This could either be a {@link CustomMessage} or a {@link Version}.
    *
    * It will return UNDEFINED if:
@@ -73,9 +90,6 @@ class BlockScanner {
 
         // if we're in a block that we've already scanned last time, let's stop and don't return anything
         if (transactionBlock <= this.lastConfigBlock) {
-          console.debug(
-            "Stopping since there is no new config based on your config."
-          );
           return undefined;
         }
 
@@ -90,7 +104,7 @@ class BlockScanner {
         if (!latestWizardTransaction) return latestWizardTransaction;
 
         return {
-          blockTime: (await this.client.stats.get()).count.blocks,
+          blockTime: await this.getBlockHeight(),
           message: latestWizardTransaction.script.hex.toString(), // encrypted and compressed message as String
           lastConfigBlock: transactionBlock,
         };

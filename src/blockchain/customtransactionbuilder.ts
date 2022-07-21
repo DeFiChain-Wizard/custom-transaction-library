@@ -26,6 +26,10 @@ interface TransactionConfig {
   client: WhaleApiClient;
 }
 
+interface Hex {
+  hex: string;
+}
+
 /**
  * The Custom Transaction Builder, that actually builds the transaction based on the passed data.
  */
@@ -72,7 +76,7 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
    * @param hex the object with the hex data
    * @returns The transaction id
    */
-  sendRawTx = async (rawtx: Rawtx, hex: any): Promise<string> => {
+  sendRawTx = async (rawtx: Rawtx, hex: Hex): Promise<string> => {
     return new Promise((resolve, reject) => {
       try {
         const tx = rawtx.send(hex);
