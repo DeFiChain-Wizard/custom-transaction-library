@@ -19,14 +19,12 @@ interface TransactionMessage {
 interface BlockScannerConfig {
   client: WhaleApiClient;
   address: string;
-  lastConfigBlock: number;
 }
 
 /** Will scan for blocks e.g. to search for transactions. */
 class BlockScanner {
   private readonly client: WhaleApiClient;
   private readonly address: string;
-  private readonly lastConfigBlock: number;
 
   /**
    * The constructor takes the transaction configuration {@link TransactionConfig}.
@@ -36,7 +34,6 @@ class BlockScanner {
   constructor(config: BlockScannerConfig) {
     this.client = config.client;
     this.address = config.address;
-    this.lastConfigBlock = config.lastConfigBlock;
   }
 
   /**
@@ -67,6 +64,7 @@ class BlockScanner {
    * @returns The latest transaction found for this address, with current block height, the message and the lastConfigBlock.
    */
   async findLastWizardConfiguration(
+    lastConfigBlock = 0,
     numberOfTransactions = 200
   ): Promise<TransactionMessage | undefined> {
     let next: string | undefined;
@@ -89,7 +87,7 @@ class BlockScanner {
         transactionBlock = transaction.block.height;
 
         // if we're in a block that we've already scanned last time, let's stop and don't return anything
-        if (transactionBlock <= this.lastConfigBlock) {
+        if (transactionBlock <= lastConfigBlock) {
           return undefined;
         }
 
