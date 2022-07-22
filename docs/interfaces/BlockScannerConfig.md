@@ -8,7 +8,6 @@
 
 - [address](BlockScannerConfig.md#address)
 - [client](BlockScannerConfig.md#client)
-- [lastConfigBlock](BlockScannerConfig.md#lastconfigblock)
 
 ## Properties
 
@@ -18,7 +17,7 @@
 
 #### Defined in
 
-[blockchain/blockscanner.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/a7a7501/src/blockchain/blockscanner.ts#L21)
+[blockchain/blockscanner.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/blockchain/blockscanner.ts#L21)
 
 ___
 
@@ -28,14 +27,4 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/a7a7501/src/blockchain/blockscanner.ts#L20)
-
-___
-
-### lastConfigBlock
-
-• **lastConfigBlock**: `number`
-
-#### Defined in
-
-[blockchain/blockscanner.ts:22](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/a7a7501/src/blockchain/blockscanner.ts#L22)
+[blockchain/blockscanner.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/blockchain/blockscanner.ts#L20)

@@ -103,7 +103,10 @@ class BlockScanner {
 
         return {
           blockTime: await this.getBlockHeight(),
-          message: latestWizardTransaction.script.hex.toString(), // encrypted and compressed message as String
+          message: Buffer.from(
+            latestWizardTransaction.script.hex.substring(10),
+            "hex"
+          ).toString(), // encrypted and compressed message as String
           lastConfigBlock: transactionBlock,
         };
       }
