@@ -15,7 +15,6 @@ import { WIZARD_TRANSACTION_CONFIG_PREFIX } from "../utils/helpers";
 import retry from "async-await-retry";
 import { Rawtx } from "@defichain/whale-api-client/dist/api/rawtx";
 import { Prevout } from "@defichain/jellyfish-transaction-builder/dist/provider";
-import { calculateFeeP2WPKH } from "@defichain/jellyfish-transaction-builder/dist/txn/txn_fee";
 
 /**
  * The configuration to send a transaction.
