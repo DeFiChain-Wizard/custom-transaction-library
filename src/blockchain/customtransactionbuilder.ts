@@ -14,11 +14,13 @@ import { WhaleApiClient } from "@defichain/whale-api-client";
 import { WIZARD_TRANSACTION_CONFIG_PREFIX } from "../utils/helpers";
 import retry from "async-await-retry";
 import { Rawtx } from "@defichain/whale-api-client/dist/api/rawtx";
+import { Prevout } from "@defichain/jellyfish-transaction-builder/dist/provider";
+import { calculateFeeP2WPKH } from "@defichain/jellyfish-transaction-builder/dist/txn/txn_fee";
 
 /**
  * The configuration to send a transaction.
  */
-interface TransactionConfig {
+interface CustomTransactionConfig {
   txn: TransactionSegWit;
   initialWaitTime: number;
   waitTime: number;
@@ -34,11 +36,50 @@ interface Hex {
  * The Custom Transaction Builder, that actually builds the transaction based on the passed data.
  */
 class CustomTXBuilder extends P2WPKHTxnBuilder {
+  /** Create an official transaction with prevout.*/
+
+  //TODO: Merge this function with the customTX function to reduce redundant code
+  async getPrevoutTx(
+    txn: TransactionSegWit,
+    prevout: Prevout | Prevout[] | undefined
+  ): Promise<TransactionSegWit> {
+    // check if we need to consider prevouts
+    if (prevout) {
+      const prevouts = Array.isArray(prevout) ? prevout : [prevout];
+      const customTx: Transaction = {
+        version: DeFiTransactionConstants.Version,
+        vin: prevouts.map((prev) => {
+          return {
+            txid: prev.txid,
+            index: prev.vout,
+            script: { stack: [] },
+            sequence: 0xffffffff,
+          };
+        }),
+        vout: txn.vout,
+        lockTime: 0x00000000,
+      };
+
+      const fee = await this.calculateFee(customTx);
+      const prevOutsValue = prevouts
+        .map((prev) => prev.value)
+        .reduce((sum, val) => sum.plus(val), new BigNumber(0));
+      customTx.vout[1].value = prevOutsValue.minus(fee);
+      const signed = await this.sign(customTx, prevouts);
+      if (!signed) {
+        throw new Error("cannot sign custom transaction");
+      }
+      txn = signed;
+    }
+    return txn;
+  }
+
+  /** Create a custom transaction */
   async getCustomTx(
     data: string,
     changeScript: Script,
     prefix = WIZARD_TRANSACTION_CONFIG_PREFIX
-  ) {
+  ): Promise<TransactionSegWit> {
     const { prevouts, vin, total } = await this.allPrevouts();
     const buf = Buffer.from(prefix + data);
     const op = new OP_PUSHDATA(buf, "little");
@@ -95,7 +136,7 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
    * Will throw error if it failed after the defined number of retries.
    */
   async sendTransaction(
-    config: TransactionConfig
+    config: CustomTransactionConfig
   ): Promise<CTransactionSegWit> {
     const ctx = new CTransactionSegWit(config.txn);
 

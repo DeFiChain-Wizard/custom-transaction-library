@@ -4,7 +4,10 @@ import {
   WhalePrevoutProvider,
   WhaleWalletAccount,
 } from "@defichain/whale-api-wallet";
-import { CTransactionSegWit } from "@defichain/jellyfish-transaction";
+import {
+  CTransactionSegWit,
+  TransactionSegWit,
+} from "@defichain/jellyfish-transaction";
 import { Network } from "@defichain/jellyfish-network";
 import { Prevout } from "@defichain/jellyfish-transaction-builder/dist/provider";
 import { CustomMessage } from "./message";
@@ -44,6 +47,7 @@ class Transaction implements DFITransaction {
   private readonly account: WhaleWalletAccount;
   private readonly network: Network;
   private readonly passphrase: string[];
+  private readonly ctxBuilder: CustomTXBuilder;
   /**
    * The constructor takes the transaction configuration {@link TransactionConfig}.
    *
@@ -54,6 +58,14 @@ class Transaction implements DFITransaction {
     this.account = config.account;
     this.network = config.network;
     this.passphrase = config.passphrase;
+    this.ctxBuilder = new CustomTXBuilder(
+      new WhaleFeeRateProvider(this.client),
+      new WhalePrevoutProvider(this.account, 200),
+      {
+        get: () => this.account,
+      },
+      this.network
+    );
   }
 
   /**
@@ -90,28 +102,41 @@ class Transaction implements DFITransaction {
     message: string,
     prefix?: string
   ): Promise<string> {
-    const feeRateProvider = new WhaleFeeRateProvider(this.client);
-    const prevoutProvider = new WhalePrevoutProvider(this.account, 200);
-    const builder = new CustomTXBuilder(
-      feeRateProvider,
-      prevoutProvider,
-      {
-        get: () => this.account,
-      },
-      this.network
-    );
-    const txn = await builder.getCustomTx(
+    const txn = await this.ctxBuilder.getCustomTx(
       message,
       await this.account.getScript(),
       prefix
     );
-    const transaction = await builder.sendTransaction({
+    const transaction = await this.ctxBuilder.sendTransaction({
       txn,
       initialWaitTime: 2000,
       waitTime: 5000,
       retries: 3,
       client: this.client,
-    }); //
+    });
+
+    return transaction.txId;
+  }
+
+  /**
+   * Sends a transaction together with others in the same block
+   * @param transactionToSend The transaction to be sent
+   * @param prevout The list of prevouts
+   * @returns The transaction id
+   */
+
+  async sendTransactionWithPrevout(
+    transactionToSend: TransactionSegWit,
+    prevout: Prevout | Prevout[] | undefined
+  ): Promise<string> {
+    const txn = await this.ctxBuilder.getPrevoutTx(transactionToSend, prevout);
+    const transaction = await this.ctxBuilder.sendTransaction({
+      txn,
+      initialWaitTime: 2000,
+      waitTime: 5000,
+      retries: 3,
+      client: this.client,
+    });
 
     return transaction.txId;
   }
