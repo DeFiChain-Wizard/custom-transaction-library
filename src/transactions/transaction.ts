@@ -11,7 +11,10 @@ import {
 import { Network } from "@defichain/jellyfish-network";
 import { Prevout } from "@defichain/jellyfish-transaction-builder/dist/provider";
 import { CustomMessage } from "./message";
-import { CustomTXBuilder } from "../blockchain/customtransactionbuilder";
+import {
+  CustomTransactionConfig,
+  CustomTXBuilder,
+} from "../blockchain/customtransactionbuilder";
 import { MessageCompressor } from "../utils/compressor";
 import { MessageEncryptor } from "../utils/encryptor";
 import { Version } from "./version";
@@ -119,12 +122,31 @@ class Transaction implements DFITransaction {
   }
 
   /**
+   * Takes a transaction config and sends it directly.
+   * @param config The custom transaction configuration containing the transaction to send
+   * @returns
+   */
+  async sendTransaction(
+    config: CustomTransactionConfig
+  ): Promise<CTransactionSegWit> {
+    const { txn, initialWaitTime } = config;
+    const transaction = await this.ctxBuilder.sendTransaction({
+      txn,
+      initialWaitTime,
+      waitTime: 5000,
+      retries: 3,
+      client: this.client,
+    });
+
+    return transaction;
+  }
+
+  /**
    * Sends a transaction together with others in the same block
    * @param transactionToSend The transaction to be sent
    * @param prevout The list of prevouts
    * @returns The transaction id
    */
-
   async sendTransactionWithPrevout(
     transactionToSend: TransactionSegWit,
     prevout: Prevout | Prevout[] | undefined

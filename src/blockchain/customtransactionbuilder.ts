@@ -162,4 +162,4 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
   }
 }
 
-export { CustomTXBuilder };
+export { CustomTXBuilder, CustomTransactionConfig };
