@@ -4,7 +4,9 @@ import {
   WhalePrevoutProvider,
   WhaleWalletAccount,
 } from "@defichain/whale-api-wallet";
+import { CTransactionSegWit } from "@defichain/jellyfish-transaction";
 import { Network } from "@defichain/jellyfish-network";
+import { Prevout } from "@defichain/jellyfish-transaction-builder/dist/provider";
 import { CustomMessage } from "./message";
 import { CustomTXBuilder } from "../blockchain/customtransactionbuilder";
 import { MessageCompressor } from "../utils/compressor";
@@ -140,6 +142,22 @@ class Transaction implements DFITransaction {
     const decryptedData = MessageEncryptor.decrypt(message, this.passphrase);
     // now we will decompress the message
     return MessageCompressor.decompress(decryptedData);
+  }
+
+  /**
+   * Creating a Prevout Object from a transactionObject
+   *
+   * @param tx transaction to convert to prevout
+   * @returns prevout Object
+   */
+  public static prevOutFromTx(tx: CTransactionSegWit): Prevout {
+    return {
+      txid: tx.txId,
+      vout: 1,
+      value: tx.vout[1].value,
+      script: tx.vout[1].script,
+      tokenId: tx.vout[1].tokenId,
+    };
   }
 }
 

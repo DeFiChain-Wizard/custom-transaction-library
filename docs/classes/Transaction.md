@@ -29,6 +29,7 @@ transaction or to read the custom message from a transaction.
 - [getCustomMessage](Transaction.md#getcustommessage)
 - [send](Transaction.md#send)
 - [sendCustomMessage](Transaction.md#sendcustommessage)
+- [prevOutFromTx](Transaction.md#prevoutfromtx)
 
 ## Constructors
 
@@ -46,7 +47,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:50](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L50)
+[transactions/transaction.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L52)
 
 ## Properties
 
@@ -56,7 +57,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:42](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L42)
+[transactions/transaction.ts:44](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L44)
 
 ___
 
@@ -66,7 +67,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:41](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L41)
+[transactions/transaction.ts:43](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L43)
 
 ___
 
@@ -76,7 +77,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:43](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L43)
+[transactions/transaction.ts:45](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L45)
 
 ___
 
@@ -86,7 +87,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:44](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L44)
+[transactions/transaction.ts:46](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L46)
 
 ## Methods
 
@@ -110,7 +111,7 @@ the compressed and encrypted message as string
 
 #### Defined in
 
-[transactions/transaction.ts:123](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L123)
+[transactions/transaction.ts:125](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L125)
 
 ___
 
@@ -134,7 +135,7 @@ the uncompressed and decrypted [CustomMessage](../interfaces/CustomMessage.md)
 
 #### Defined in
 
-[transactions/transaction.ts:136](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L136)
+[transactions/transaction.ts:138](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L138)
 
 ___
 
@@ -159,7 +160,7 @@ The custom message.
 
 #### Defined in
 
-[transactions/transaction.ts:78](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L78)
+[transactions/transaction.ts:80](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L80)
 
 ___
 
@@ -187,7 +188,7 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:62](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L62)
+[transactions/transaction.ts:64](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L64)
 
 ___
 
@@ -210,4 +211,28 @@ Takes the compressed and encrypted message as string and sends it.
 
 #### Defined in
 
-[transactions/transaction.ts:87](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/937521f/src/transactions/transaction.ts#L87)
+[transactions/transaction.ts:89](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L89)
+
+___
+
+### prevOutFromTx
+
+▸ `Static` **prevOutFromTx**(`tx`): `Prevout`
+
+Creating a Prevout Object from a transactionObject
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `tx` | `CTransactionSegWit` | transaction to convert to prevout |
+
+#### Returns
+
+`Prevout`
+
+prevout Object
+
+#### Defined in
+
+[transactions/transaction.ts:153](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/6e57200/src/transactions/transaction.ts#L153)
