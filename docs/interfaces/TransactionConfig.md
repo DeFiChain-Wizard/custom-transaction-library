@@ -21,7 +21,7 @@ The options that must be passed in order to create a transaction.
 
 #### Defined in
 
-[transactions/transaction.ts:36](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/4aaa3bc/src/transactions/transaction.ts#L36)
+[transactions/transaction.ts:36](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/1f23cfe/src/transactions/transaction.ts#L36)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/4aaa3bc/src/transactions/transaction.ts#L35)
+[transactions/transaction.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/1f23cfe/src/transactions/transaction.ts#L35)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:37](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/4aaa3bc/src/transactions/transaction.ts#L37)
+[transactions/transaction.ts:37](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/1f23cfe/src/transactions/transaction.ts#L37)
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:38](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/4aaa3bc/src/transactions/transaction.ts#L38)
+[transactions/transaction.ts:38](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/1f23cfe/src/transactions/transaction.ts#L38)

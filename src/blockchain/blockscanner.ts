@@ -52,6 +52,44 @@ class BlockScanner {
     return (await this.client.stats.get()).count.blocks;
   }
 
+  /** Wait for a certain amount of time.  */
+  delay(time: number) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+
+  /**
+   * Waits until a certain block was found...
+   *
+   * @param searchBlock The Block to wait for
+   */
+  async waitForNextBlock(searchBlock: number) {
+    console.log("Started looking for a new block");
+
+    let currBlock = searchBlock;
+    let currWait = 0;
+    const maxWait = 600;
+
+    while (searchBlock === currBlock) {
+      currBlock = await this.getBlockHeight();
+      console.log(
+        `Last block: ${searchBlock} -> current block: ${currBlock.valueOf()} (${currWait})`
+      );
+
+      if (searchBlock !== currBlock) {
+        console.log(`New Block: ${currBlock}`);
+        break;
+      }
+
+      await this.delay(1000);
+
+      currWait += 1;
+      if (currWait > maxWait) {
+        console.log("Timeout while waiting for new block");
+        break;
+      }
+    }
+  }
+
   /**
    * Retrieves the last config for this bot. This could either be a {@link CustomMessage} or a {@link Version}.
    *

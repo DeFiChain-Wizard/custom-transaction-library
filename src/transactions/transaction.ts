@@ -128,9 +128,9 @@ class Transaction implements DFITransaction {
   async sendTransactionWithPrevout(
     transactionToSend: TransactionSegWit,
     prevout: Prevout | Prevout[] | undefined
-  ): Promise<string> {
+  ): Promise<CTransactionSegWit> {
     const txn = await this.ctxBuilder.getPrevoutTx(transactionToSend, prevout);
-    const transaction = await this.ctxBuilder.sendTransaction({
+    const transaction = this.ctxBuilder.sendTransaction({
       txn,
       initialWaitTime: 2000,
       waitTime: 5000,
@@ -138,7 +138,7 @@ class Transaction implements DFITransaction {
       client: this.client,
     });
 
-    return transaction.txId;
+    return transaction;
   }
 
   /**
