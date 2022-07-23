@@ -156,4 +156,4 @@ class BlockScanner {
   }
 }
 
-export { BlockScanner, BlockScannerConfig };
+export { BlockScanner, BlockScannerConfig, TransactionMessage };

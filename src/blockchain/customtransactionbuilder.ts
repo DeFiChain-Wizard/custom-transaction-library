@@ -6,6 +6,7 @@ import {
   CTransactionSegWit,
   Script,
   Vout,
+  Vin,
   OP_PUSHDATA,
   OP_CODES,
 } from "@defichain/jellyfish-transaction";
@@ -35,9 +36,13 @@ interface Hex {
  * The Custom Transaction Builder, that actually builds the transaction based on the passed data.
  */
 class CustomTXBuilder extends P2WPKHTxnBuilder {
-  /** Create an official transaction with prevout.*/
-
-  //TODO: Merge this function with the customTX function to reduce redundant code
+  /**
+   * Creates a transaction with PREVOUTS.
+   *
+   * @param txn The Transaction to create
+   * @param prevout The list of prevouts for this transaction
+   * @returns A transaction with prevouts.
+   */
   async getPrevoutTx(
     txn: TransactionSegWit,
     prevout: Prevout | Prevout[] | undefined
@@ -45,9 +50,9 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
     // check if we need to consider prevouts
     if (prevout) {
       const prevouts = Array.isArray(prevout) ? prevout : [prevout];
-      const customTx: Transaction = {
-        version: DeFiTransactionConstants.Version,
-        vin: prevouts.map((prev) => {
+
+      const customTx = this.buildTransaction(
+        prevouts.map((prev) => {
           return {
             txid: prev.txid,
             index: prev.vout,
@@ -55,15 +60,17 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
             sequence: 0xffffffff,
           };
         }),
-        vout: txn.vout,
-        lockTime: 0x00000000,
-      };
+        txn.vout
+      );
 
+      // calculate the fee for this transaction
       const fee = await this.calculateFee(customTx);
       const prevOutsValue = prevouts
         .map((prev) => prev.value)
         .reduce((sum, val) => sum.plus(val), new BigNumber(0));
       customTx.vout[1].value = prevOutsValue.minus(fee);
+
+      // sign it
       const signed = await this.sign(customTx, prevouts);
       if (!signed) {
         throw new Error("cannot sign custom transaction");
@@ -73,7 +80,30 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
     return txn;
   }
 
-  /** Create a custom transaction */
+  /**
+   * This is a common function that greats a transaction by passing VIN and VOUT.
+   *
+   * @param vin The VIN for the transaction
+   * @param vout The VOUT for the transaction
+   * @returns a Transaction object to be used for fee calculation and for signing.
+   */
+  private buildTransaction(vin: Vin[], vout: Vout[]): Transaction {
+    return {
+      version: DeFiTransactionConstants.Version,
+      vin,
+      vout,
+      lockTime: 0x00000000,
+    };
+  }
+
+  /**
+   * Creates a RAW custom transaction on the blockchain.
+   *
+   * @param data The custom data to be sent with the transaction
+   * @param changeScript The account script
+   * @param prefix The prefix to use for the transaction message (e.g. WzTx or VzWx)
+   * @returns The signed custom transaction
+   */
   async getCustomTx(
     data: string,
     changeScript: Script,
@@ -96,13 +126,9 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
       tokenId: 0x00,
     };
 
-    const txn: Transaction = {
-      version: DeFiTransactionConstants.Version,
-      vin: vin,
-      vout: [deFiOut, change],
-      lockTime: 0x00000000,
-    };
+    const txn = this.buildTransaction(vin, [deFiOut, change]);
 
+    // calculate the fee for this transaction
     const fee = await this.calculateFee(txn);
     change.value = total.minus(fee);
 

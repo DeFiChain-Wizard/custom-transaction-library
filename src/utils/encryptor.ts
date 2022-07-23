@@ -13,7 +13,7 @@ class MessageEncryptor {
   }
 
   /**
-   * Decrypts a certain encryted string and returns the unencrypted string.
+   * Decrypts a certain encrypted string and returns the unencrypted string.
    *
    * @param data The string/data to decrypt.
    * @param passphrase The passphrase as string array to decrypt

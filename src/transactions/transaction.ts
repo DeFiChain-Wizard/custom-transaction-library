@@ -112,7 +112,7 @@ class Transaction implements DFITransaction {
     );
     const transaction = await this.ctxBuilder.sendTransaction({
       txn,
-      initialWaitTime: 2000,
+      initialWaitTime: 1000,
       waitTime: 5000,
       retries: 3,
       client: this.client,
@@ -129,13 +129,13 @@ class Transaction implements DFITransaction {
   async sendTransaction(
     config: CustomTransactionConfig
   ): Promise<CTransactionSegWit> {
-    const { txn, initialWaitTime } = config;
+    const { txn, initialWaitTime, waitTime, retries, client } = config;
     const transaction = await this.ctxBuilder.sendTransaction({
       txn,
       initialWaitTime,
-      waitTime: 5000,
-      retries: 3,
-      client: this.client,
+      waitTime,
+      retries,
+      client,
     });
 
     return transaction;
@@ -154,7 +154,7 @@ class Transaction implements DFITransaction {
     const txn = await this.ctxBuilder.getPrevoutTx(transactionToSend, prevout);
     const transaction = this.ctxBuilder.sendTransaction({
       txn,
-      initialWaitTime: 2000,
+      initialWaitTime: 3000,
       waitTime: 5000,
       retries: 3,
       client: this.client,
