@@ -34,7 +34,7 @@ For interoperability it only checks for three members.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `message` | `any` | The message to check if it's a custom message |
+| `message` | `object` | The message to check if it's a custom message |
 
 #### Returns
 
@@ -44,7 +44,7 @@ true if it's a Custom Message
 
 #### Defined in
 
-[utils/helpers.ts:59](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2950434/src/utils/helpers.ts#L59)
+[utils/helpers.ts:59](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/775b9a2/src/utils/helpers.ts#L59)
 
 ___
 
@@ -60,7 +60,7 @@ For interoperability it's only check for three members.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `message` | `any` | The message to check if it's a custom message |
+| `message` | `object` | The message to check if it's a custom message |
 
 #### Returns
 
@@ -70,4 +70,4 @@ true if it's a Version
 
 #### Defined in
 
-[utils/helpers.ts:78](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2950434/src/utils/helpers.ts#L78)
+[utils/helpers.ts:78](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/775b9a2/src/utils/helpers.ts#L78)
