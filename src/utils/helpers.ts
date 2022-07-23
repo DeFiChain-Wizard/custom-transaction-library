@@ -56,7 +56,9 @@ const isWizardMessage = (transaction: TransactionVout): boolean => {
  * @param message The message to check if it's a custom message
  * @returns true if it's a Custom Message
  */
-const isCustomMessage = (message: any): message is CustomMessage => {
+const isCustomMessage = (
+  message: CustomMessage | Version
+): message is CustomMessage => {
   return (
     "version" in message &&
     "vaultId" in message &&
@@ -75,7 +77,9 @@ const isCustomMessage = (message: any): message is CustomMessage => {
  * @param message The message to check if it's a custom message
  * @returns true if it's a Version
  */
-const isVersionMessage = (message: any): message is Version => {
+const isVersionMessage = (
+  message: CustomMessage | Version
+): message is Version => {
   return (
     "version" in message &&
     !("vaultId" in message) &&
