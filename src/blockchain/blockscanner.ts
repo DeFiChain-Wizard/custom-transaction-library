@@ -2,6 +2,7 @@ import { ApiPagedResponse, WhaleApiClient } from "@defichain/whale-api-client";
 import { AddressActivity } from "@defichain/whale-api-client/dist/api/address";
 import { Block } from "@defichain/whale-api-client/dist/api/blocks";
 import { isWizardMessage } from "../utils/helpers";
+import { logInfo } from "@defichainwizard/custom-logging";
 
 /**
  * The transaction message contains the following properties
@@ -63,7 +64,7 @@ class BlockScanner {
    * @param searchBlock The Block to wait for
    */
   async waitForNextBlock(searchBlock: number) {
-    console.log("Started looking for a new block");
+    logInfo("Started looking for a new block...");
 
     let currBlock = searchBlock;
     let currWait = 0;
@@ -71,12 +72,12 @@ class BlockScanner {
 
     while (searchBlock === currBlock) {
       currBlock = await this.getBlockHeight();
-      console.log(
+      logInfo(
         `Last block: ${searchBlock} -> current block: ${currBlock.valueOf()} (${currWait})`
       );
 
       if (searchBlock !== currBlock) {
-        console.log(`New Block: ${currBlock}`);
+        logInfo(`New Block: ${currBlock}`);
         break;
       }
 
@@ -84,7 +85,7 @@ class BlockScanner {
 
       currWait += 1;
       if (currWait > maxWait) {
-        console.log("Timeout while waiting for new block");
+        logInfo("Timeout while waiting for new block");
         break;
       }
     }
