@@ -1,5 +1,4 @@
 import { TransactionVout } from "@defichain/whale-api-client/dist/api/transactions";
-import { logDebug } from "@defichainwizard/custom-logging";
 import { CustomMessage } from "../transactions";
 import { Version } from "../transactions/version";
 

@@ -9,6 +9,7 @@ interface CustomMessageRules {
 }
 
 interface CustomMessage {
+  [key: string]: string | number | object;
   version: string;
   vaultId: string;
   pause: number;
