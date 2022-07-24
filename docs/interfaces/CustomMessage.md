@@ -10,7 +10,6 @@
 - [pause](CustomMessage.md#pause)
 - [poolpairs](CustomMessage.md#poolpairs)
 - [rules](CustomMessage.md#rules)
-- [telegram](CustomMessage.md#telegram)
 - [vaultId](CustomMessage.md#vaultid)
 - [version](CustomMessage.md#version)
 
@@ -22,7 +21,7 @@
 
 #### Defined in
 
-[transactions/message.ts:19](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/message.ts#L19)
+[transactions/message.ts:15](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L15)
 
 ___
 
@@ -32,7 +31,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:18](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/message.ts#L18)
+[transactions/message.ts:14](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L14)
 
 ___
 
@@ -46,7 +45,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:20](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/message.ts#L20)
+[transactions/message.ts:16](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L16)
 
 ___
 
@@ -56,17 +55,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:21](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/message.ts#L21)
-
-___
-
-### telegram
-
-• **telegram**: `CustomMessageTelegram`
-
-#### Defined in
-
-[transactions/message.ts:22](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/message.ts#L22)
+[transactions/message.ts:17](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L17)
 
 ___
 
@@ -76,7 +65,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:17](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/message.ts#L17)
+[transactions/message.ts:13](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L13)
 
 ___
 
@@ -86,4 +75,4 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:16](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/7d61c1f/src/transactions/message.ts#L16)
+[transactions/message.ts:12](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L12)

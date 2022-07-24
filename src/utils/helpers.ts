@@ -1,3 +1,4 @@
+import { TransactionVout } from "@defichain/whale-api-client/dist/api/transactions";
 import { CustomMessage } from "../transactions";
 import { Version } from "../transactions/version";
 
@@ -19,6 +20,35 @@ const removeTXPrefix = (message: string): string => {
 };
 
 /**
+ * Converts a given ASCII String to HEX.
+ *
+ * @param ascii The ASCII string to convert to a HEX String
+ * @returns The HEX string for a given ASCII String.
+ */
+const asciiToHex = (ascii: string): string => {
+  const arr1 = [];
+  for (let n = 0, l = ascii.length; n < l; n++) {
+    arr1.push(Number(ascii.charCodeAt(n)).toString(16));
+  }
+  return arr1.join("");
+};
+
+/**
+ * Checks if a given transaction message is using one of the prefixes.
+ * It will just check for the prefixes.
+ *
+ * */
+const isWizardMessage = (transaction: TransactionVout): boolean => {
+  const regex = new RegExp(
+    `^.{10}(${asciiToHex(WIZARD_TRANSACTION_CONFIG_PREFIX)}|${asciiToHex(
+      WIZARD_TRANSACTION_VERSION_PREFIX
+    )})`,
+    "gmi"
+  );
+  return regex.test(transaction.script.hex.toString());
+};
+
+/**
  * This internal type guard checks if the decompressed message is of type {@link CustomMessage}.
  *
  * For interoperability it only checks for three members.
@@ -26,7 +56,7 @@ const removeTXPrefix = (message: string): string => {
  * @param message The message to check if it's a custom message
  * @returns true if it's a Custom Message
  */
-const isCustomMessage = (message: any): message is CustomMessage => {
+const isCustomMessage = (message: object): message is CustomMessage => {
   return (
     "version" in message &&
     "vaultId" in message &&
@@ -45,7 +75,7 @@ const isCustomMessage = (message: any): message is CustomMessage => {
  * @param message The message to check if it's a custom message
  * @returns true if it's a Version
  */
-const isVersionMessage = (message: any): message is Version => {
+const isVersionMessage = (message: object): message is Version => {
   return (
     "version" in message &&
     !("vaultId" in message) &&
@@ -62,4 +92,5 @@ export {
   removeTXPrefix,
   isCustomMessage,
   isVersionMessage,
+  isWizardMessage,
 };

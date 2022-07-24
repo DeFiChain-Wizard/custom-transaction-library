@@ -95,3 +95,27 @@ WzTxU2FsdGVkX193BZ6NqtpjOSJP4GTQDYEDHSUmbbMdhQNfcV9NQCjrzoGWL2QF8mW6D+NR9sKDpqu3
 // get the CustomMessage from the passed string.
 const customMessage = transaction.getCustomMessage(theStringFromAbove);
 ```
+
+## Find the latest wizard transaction on the blockchain
+
+```ts
+const config: BlockScannerConfig = {
+    client: await myWallet.getClient(),
+    address: await myWallet.getAddress(),
+    lastConfigBlock: 2076745 // the block which contained the last wizard transaction
+  };
+
+  const bs = new BlockScanner(config);
+```
+
+This code returns a `TransactionMessage` object that will look like this:
+
+```json
+{
+  "blockTime": 2076745,
+  "message": "6a004d8401577a5478553...451694f5030",
+  "lastConfigBlock": 2076747
+}
+```
+
+> :warning: **This function can return UNDEFINED*: If there is no config found, it will return undefined.
