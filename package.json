@@ -5,7 +5,7 @@
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "scripts": {
-        "build": "tsc && npm run test && npm run docs",
+        "build": "tsc && npm run docs",
         "test": "jest",
         "docs": "npx typedoc --plugin typedoc-plugin-markdown src/index.ts",
         "publish": "npm run build && npm publish --access public"

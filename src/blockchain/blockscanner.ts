@@ -2,7 +2,7 @@ import { ApiPagedResponse, WhaleApiClient } from "@defichain/whale-api-client";
 import { AddressActivity } from "@defichain/whale-api-client/dist/api/address";
 import { Block } from "@defichain/whale-api-client/dist/api/blocks";
 import { isWizardMessage } from "../utils/helpers";
-import { logInfo } from "@defichainwizard/custom-logging";
+import { logDebug, logInfo } from "@defichainwizard/custom-logging";
 
 /**
  * The transaction message contains the following properties
@@ -17,12 +17,18 @@ interface TransactionMessage {
   lastConfigBlock: number;
 }
 
+/**
+ * The config needed for the block scanner to operate.
+ */
 interface BlockScannerConfig {
   client: WhaleApiClient;
   address: string;
 }
 
-/** Will scan for blocks e.g. to search for transactions. */
+/**
+ * Will scan for blocks e.g. to search for transactions.
+ *
+ */
 class BlockScanner {
   private readonly client: WhaleApiClient;
   private readonly address: string;
@@ -103,12 +109,14 @@ class BlockScanner {
    * @returns The latest transaction found for this address, with current block height, the message and the lastConfigBlock.
    */
   async findLastWizardConfiguration(
-    lastConfigBlock = 0,
+    lastConfigBlock = 2010000,
     numberOfTransactions = 200
   ): Promise<TransactionMessage | undefined> {
     let next: string | undefined;
     let myTXs: ApiPagedResponse<AddressActivity>;
     let transactionBlock = 0;
+
+    logDebug(`[Block Scanner] Received last config block: ${lastConfigBlock}`);
 
     do {
       // get all transactions (paged)
@@ -138,20 +146,24 @@ class BlockScanner {
         );
 
         // no custom message found - return undefined
-        if (!latestWizardTransaction) return latestWizardTransaction;
+        if (latestWizardTransaction) {
+          const foundTransaction = {
+            blockTime: await this.getBlockHeight(),
+            message: Buffer.from(
+              latestWizardTransaction.script.hex.substring(10),
+              "hex"
+            ).toString(), // encrypted and compressed message as String
+            lastConfigBlock: transactionBlock,
+          };
 
-        return {
-          blockTime: await this.getBlockHeight(),
-          message: Buffer.from(
-            latestWizardTransaction.script.hex.substring(10),
-            "hex"
-          ).toString(), // encrypted and compressed message as String
-          lastConfigBlock: transactionBlock,
-        };
+          logDebug(`[Block Scanner] Found Wizard transaction.`);
+          logDebug(foundTransaction);
+          return foundTransaction;
+        }
       }
 
       next = myTXs.nextToken;
-    } while (myTXs.hasNext);
+    } while (myTXs.nextToken !== undefined);
 
     return undefined;
   }
