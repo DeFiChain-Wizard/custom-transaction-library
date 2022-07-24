@@ -15,6 +15,7 @@ interface CustomMessage {
   compounding: CustomMessageCompounding;
   poolpairs: { [key: string]: number }; // arbitrary number of dTokens as Keys with the ratio number as value
   rules: CustomMessageRules;
+  waitTime: number;
 }
 
 export { CustomMessage };
