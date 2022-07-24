@@ -14,11 +14,14 @@ Will scan for blocks e.g. to search for transactions.
 
 - [address](BlockScanner.md#address)
 - [client](BlockScanner.md#client)
-- [lastConfigBlock](BlockScanner.md#lastconfigblock)
 
 ### Methods
 
+- [delay](BlockScanner.md#delay)
 - [findLastWizardConfiguration](BlockScanner.md#findlastwizardconfiguration)
+- [getBlockHeight](BlockScanner.md#getblockheight)
+- [getCurrentBlock](BlockScanner.md#getcurrentblock)
+- [waitForNextBlock](BlockScanner.md#waitfornextblock)
 
 ## Constructors
 
@@ -36,7 +39,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[blockchain/blockscanner.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L35)
+[blockchain/blockscanner.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L35)
 
 ## Properties
 
@@ -46,7 +49,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L27)
+[blockchain/blockscanner.ts:28](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L28)
 
 ___
 
@@ -56,23 +59,35 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:26](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L26)
-
-___
-
-### lastConfigBlock
-
-• `Private` `Readonly` **lastConfigBlock**: `number`
-
-#### Defined in
-
-[blockchain/blockscanner.ts:28](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L28)
+[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L27)
 
 ## Methods
 
+### delay
+
+▸ **delay**(`time`): `Promise`<`unknown`\>
+
+Wait for a certain amount of time.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `time` | `number` |
+
+#### Returns
+
+`Promise`<`unknown`\>
+
+#### Defined in
+
+[blockchain/blockscanner.ts:57](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L57)
+
+___
+
 ### findLastWizardConfiguration
 
-▸ **findLastWizardConfiguration**(`numberOfTransactions?`): `Promise`<`undefined` \| `TransactionMessage`\>
+▸ **findLastWizardConfiguration**(`lastConfigBlock?`, `numberOfTransactions?`): `Promise`<`undefined` \| `TransactionMessage`\>
 
 Retrieves the last config for this bot. This could either be a [CustomMessage](../interfaces/CustomMessage.md) or a Version.
 
@@ -85,6 +100,7 @@ It will return UNDEFINED if:
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
+| `lastConfigBlock` | `number` | `0` | - |
 | `numberOfTransactions` | `number` | `200` | The number of transactions to check back in one rush (paging) |
 
 #### Returns
@@ -95,4 +111,62 @@ The latest transaction found for this address, with current block height, the me
 
 #### Defined in
 
-[blockchain/blockscanner.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/637caef/src/blockchain/blockscanner.ts#L52)
+[blockchain/blockscanner.ts:105](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L105)
+
+___
+
+### getBlockHeight
+
+▸ **getBlockHeight**(): `Promise`<`number`\>
+
+Returns the current block height.
+
+#### Returns
+
+`Promise`<`number`\>
+
+the current block height.
+
+#### Defined in
+
+[blockchain/blockscanner.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L52)
+
+___
+
+### getCurrentBlock
+
+▸ **getCurrentBlock**(): `Promise`<`Block`\>
+
+Returns the current block.
+
+#### Returns
+
+`Promise`<`Block`\>
+
+the current block.
+
+#### Defined in
+
+[blockchain/blockscanner.ts:44](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L44)
+
+___
+
+### waitForNextBlock
+
+▸ **waitForNextBlock**(`searchBlock`): `Promise`<`void`\>
+
+Waits until a certain block was found...
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `searchBlock` | `number` | The Block to wait for |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[blockchain/blockscanner.ts:66](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L66)

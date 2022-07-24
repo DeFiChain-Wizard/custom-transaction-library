@@ -1,1 +1,5 @@
-export { BlockScanner, BlockScannerConfig } from "./blockscanner";
+export {
+  BlockScanner,
+  BlockScannerConfig,
+  TransactionMessage,
+} from "./blockscanner";

@@ -1,9 +1,6 @@
 import { CustomMessage } from "../transactions";
 import { Version } from "../transactions/version";
 import { isCustomMessage, isVersionMessage } from "./helpers";
-// const LZUTF8 = require("lzutf8");
-
-// const BASE_ENCODING = "Base64";
 
 class MessageCompressor {
   /**
@@ -12,10 +9,8 @@ class MessageCompressor {
    * @returns The compressed data as string.
    */
   static compress(data: CustomMessage | Version): string {
-    // return LZUTF8.compress(JSON.stringify(data), {
-    //   outputEncoding: BASE_ENCODING,
-    // });
-    return JSON.stringify(data); //TODO: For now we do not compress, but will need to take a look at it later
+    //TODO: For now we do not compress, once the data increases we will introduce compression.
+    return JSON.stringify(data);
   }
 
   /**
@@ -24,10 +19,8 @@ class MessageCompressor {
    * @returns The original Custom Message from the frontend.
    */
   static decompress(data: string): CustomMessage | Version {
-    // const uncompressed = LZUTF8.decompress(data, {
-    //   inputEncoding: BASE_ENCODING,
-    // });
-    const uncompressed = data; //TODO: For now we do not compress, but will need to take a look at it later
+    //TODO: For now we do not compress, once the data increases we will introduce compression.
+    const uncompressed = data;
     const customMessage = JSON.parse(uncompressed);
     if (isCustomMessage(customMessage)) return customMessage;
     if (isVersionMessage(customMessage)) return customMessage;

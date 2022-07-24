@@ -1,6 +1,8 @@
 import { ApiPagedResponse, WhaleApiClient } from "@defichain/whale-api-client";
 import { AddressActivity } from "@defichain/whale-api-client/dist/api/address";
+import { Block } from "@defichain/whale-api-client/dist/api/blocks";
 import { isWizardMessage } from "../utils/helpers";
+import { logInfo } from "@defichainwizard/custom-logging";
 
 /**
  * The transaction message contains the following properties
@@ -18,14 +20,12 @@ interface TransactionMessage {
 interface BlockScannerConfig {
   client: WhaleApiClient;
   address: string;
-  lastConfigBlock: number;
 }
 
 /** Will scan for blocks e.g. to search for transactions. */
 class BlockScanner {
   private readonly client: WhaleApiClient;
   private readonly address: string;
-  private readonly lastConfigBlock: number;
 
   /**
    * The constructor takes the transaction configuration {@link TransactionConfig}.
@@ -35,7 +35,60 @@ class BlockScanner {
   constructor(config: BlockScannerConfig) {
     this.client = config.client;
     this.address = config.address;
-    this.lastConfigBlock = config.lastConfigBlock;
+  }
+
+  /**
+   * Returns the current block.
+   * @returns the current block.
+   */
+  async getCurrentBlock(): Promise<Block> {
+    return this.client.blocks.get(`${await this.getBlockHeight()}`);
+  }
+
+  /**
+   * Returns the current block height.
+   * @returns the current block height.
+   */
+  async getBlockHeight(): Promise<number> {
+    return (await this.client.stats.get()).count.blocks;
+  }
+
+  /** Wait for a certain amount of time.  */
+  delay(time: number) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+
+  /**
+   * Waits until a certain block was found...
+   *
+   * @param searchBlock The Block to wait for
+   */
+  async waitForNextBlock(searchBlock: number) {
+    logInfo("Started looking for a new block...");
+
+    let currBlock = searchBlock;
+    let currWait = 0;
+    const maxWait = 600;
+
+    while (searchBlock === currBlock) {
+      currBlock = await this.getBlockHeight();
+      logInfo(
+        `Last block: ${searchBlock} -> current block: ${currBlock.valueOf()} (${currWait})`
+      );
+
+      if (searchBlock !== currBlock) {
+        logInfo(`New Block: ${currBlock}`);
+        break;
+      }
+
+      await this.delay(1000);
+
+      currWait += 1;
+      if (currWait > maxWait) {
+        logInfo("Timeout while waiting for new block");
+        break;
+      }
+    }
   }
 
   /**
@@ -50,6 +103,7 @@ class BlockScanner {
    * @returns The latest transaction found for this address, with current block height, the message and the lastConfigBlock.
    */
   async findLastWizardConfiguration(
+    lastConfigBlock = 0,
     numberOfTransactions = 200
   ): Promise<TransactionMessage | undefined> {
     let next: string | undefined;
@@ -72,10 +126,7 @@ class BlockScanner {
         transactionBlock = transaction.block.height;
 
         // if we're in a block that we've already scanned last time, let's stop and don't return anything
-        if (transactionBlock <= this.lastConfigBlock) {
-          console.debug(
-            "Stopping since there is no new config based on your config."
-          );
+        if (transactionBlock <= lastConfigBlock) {
           return undefined;
         }
 
@@ -90,8 +141,11 @@ class BlockScanner {
         if (!latestWizardTransaction) return latestWizardTransaction;
 
         return {
-          blockTime: (await this.client.stats.get()).count.blocks,
-          message: latestWizardTransaction.script.hex.toString(), // encrypted and compressed message as String
+          blockTime: await this.getBlockHeight(),
+          message: Buffer.from(
+            latestWizardTransaction.script.hex.substring(10),
+            "hex"
+          ).toString(), // encrypted and compressed message as String
           lastConfigBlock: transactionBlock,
         };
       }
@@ -103,4 +157,4 @@ class BlockScanner {
   }
 }
 
-export { BlockScanner, BlockScannerConfig };
+export { BlockScanner, BlockScannerConfig, TransactionMessage };
