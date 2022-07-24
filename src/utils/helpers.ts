@@ -40,11 +40,6 @@ const asciiToHex = (ascii: string): string => {
  *
  * */
 const isWizardMessage = (transaction: TransactionVout): boolean => {
-  logDebug(
-    `[Block Scanner] Checking if transaction (${transaction.id}) is a wizard message...`
-  );
-  logDebug(`[Block Scanner] Message: ${transaction.script.hex.toString()}`);
-
   const regex = new RegExp(
     `^.{10}(${asciiToHex(WIZARD_TRANSACTION_CONFIG_PREFIX)}|${asciiToHex(
       WIZARD_TRANSACTION_VERSION_PREFIX
@@ -52,9 +47,7 @@ const isWizardMessage = (transaction: TransactionVout): boolean => {
     "gmi"
   );
 
-  const testResult = regex.test(transaction.script.hex.toString());
-  logDebug(`[Block Scanner] Is it a wizard message?: ${testResult}`);
-  return testResult;
+  return regex.test(transaction.script.hex.toString());
 };
 
 /**
