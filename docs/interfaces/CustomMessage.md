@@ -12,6 +12,7 @@
 - [rules](CustomMessage.md#rules)
 - [vaultId](CustomMessage.md#vaultid)
 - [version](CustomMessage.md#version)
+- [waitTime](CustomMessage.md#waittime)
 
 ## Properties
 
@@ -21,7 +22,7 @@
 
 #### Defined in
 
-[transactions/message.ts:15](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L15)
+[transactions/message.ts:15](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/transactions/message.ts#L15)
 
 ___
 
@@ -31,7 +32,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:14](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L14)
+[transactions/message.ts:14](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/transactions/message.ts#L14)
 
 ___
 
@@ -45,7 +46,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:16](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L16)
+[transactions/message.ts:16](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/transactions/message.ts#L16)
 
 ___
 
@@ -55,7 +56,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:17](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L17)
+[transactions/message.ts:17](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/transactions/message.ts#L17)
 
 ___
 
@@ -65,7 +66,7 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:13](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L13)
+[transactions/message.ts:13](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/transactions/message.ts#L13)
 
 ___
 
@@ -75,4 +76,14 @@ ___
 
 #### Defined in
 
-[transactions/message.ts:12](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/transactions/message.ts#L12)
+[transactions/message.ts:12](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/transactions/message.ts#L12)
+
+___
+
+### waitTime
+
+• **waitTime**: `number`
+
+#### Defined in
+
+[transactions/message.ts:18](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/transactions/message.ts#L18)

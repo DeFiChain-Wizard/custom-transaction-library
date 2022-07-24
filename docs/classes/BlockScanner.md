@@ -39,7 +39,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[blockchain/blockscanner.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L35)
+[blockchain/blockscanner.ts:35](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/blockchain/blockscanner.ts#L35)
 
 ## Properties
 
@@ -49,7 +49,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[blockchain/blockscanner.ts:28](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L28)
+[blockchain/blockscanner.ts:28](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/blockchain/blockscanner.ts#L28)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L27)
+[blockchain/blockscanner.ts:27](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/blockchain/blockscanner.ts#L27)
 
 ## Methods
 
@@ -81,7 +81,7 @@ Wait for a certain amount of time.
 
 #### Defined in
 
-[blockchain/blockscanner.ts:57](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L57)
+[blockchain/blockscanner.ts:57](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/blockchain/blockscanner.ts#L57)
 
 ___
 
@@ -111,7 +111,7 @@ The latest transaction found for this address, with current block height, the me
 
 #### Defined in
 
-[blockchain/blockscanner.ts:105](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L105)
+[blockchain/blockscanner.ts:105](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/blockchain/blockscanner.ts#L105)
 
 ___
 
@@ -129,7 +129,7 @@ the current block height.
 
 #### Defined in
 
-[blockchain/blockscanner.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L52)
+[blockchain/blockscanner.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/blockchain/blockscanner.ts#L52)
 
 ___
 
@@ -147,7 +147,7 @@ the current block.
 
 #### Defined in
 
-[blockchain/blockscanner.ts:44](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L44)
+[blockchain/blockscanner.ts:44](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/blockchain/blockscanner.ts#L44)
 
 ___
 
@@ -169,4 +169,4 @@ Waits until a certain block was found...
 
 #### Defined in
 
-[blockchain/blockscanner.ts:66](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/0272648/src/blockchain/blockscanner.ts#L66)
+[blockchain/blockscanner.ts:66](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/58c22fc/src/blockchain/blockscanner.ts#L66)
