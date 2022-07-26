@@ -184,7 +184,7 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
       } catch (err) {
         const error = `Could not send transaction after ${config.retries} retries. ERR: ${err}.`;
         logError(error);
-        throw Error(error);
+        throw error;
       }
     }, config.initialWaitTime);
     return ctx;
