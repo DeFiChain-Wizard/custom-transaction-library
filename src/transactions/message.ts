@@ -12,11 +12,10 @@ interface CustomMessage {
   [key: string]: string | number | object;
   version: string;
   vaultId: string;
-  pause: number;
+  pause: number; // -1 = off | 0 = on | n = wait for n minutes
   compounding: CustomMessageCompounding;
   poolpairs: { [key: string]: number }; // arbitrary number of dTokens as Keys with the ratio number as value
   rules: CustomMessageRules;
-  waitTime: number;
 }
 
 export { CustomMessage };
