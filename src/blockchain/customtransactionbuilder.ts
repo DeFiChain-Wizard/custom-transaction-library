@@ -16,7 +16,7 @@ import { WIZARD_TRANSACTION_CONFIG_PREFIX } from "../utils/helpers";
 import retry from "async-await-retry";
 import { Rawtx } from "@defichain/whale-api-client/dist/api/rawtx";
 import { Prevout } from "@defichain/jellyfish-transaction-builder/dist/provider";
-import { logWarn } from "@defichainwizard/custom-logging";
+import { logError, logWarn } from "@defichainwizard/custom-logging";
 
 /**
  * The configuration to send a transaction.
@@ -182,9 +182,9 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
           }
         );
       } catch (err) {
-        throw Error(
-          `Could not send transaction after ${config.retries} retries. ERR: ${err}.`
-        );
+        const error = `Could not send transaction after ${config.retries} retries. ERR: ${err}.`;
+        logError(error);
+        throw Error(error);
       }
     }, config.initialWaitTime);
     return ctx;
