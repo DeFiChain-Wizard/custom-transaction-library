@@ -170,16 +170,12 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
     );
 
     try {
-      await retry(
-        this.sendRawTx,
-        [config.client.rawtx, { hex: ctx.toHex() }],
-        {
-          retriesMax: config.retries,
-          interval: config.waitTime,
-          exponential: true,
-          factor: 3,
-        }
-      );
+      await retry(this.sendRawTx, [config.client.rawtx, { hex: ctx.toHex() }], {
+        retriesMax: config.retries,
+        interval: config.waitTime,
+        exponential: true,
+        factor: 3,
+      });
     } catch (err) {
       const error = `Could not send transaction after ${config.retries} retries. ERR: ${err}.`;
       logError(error);
