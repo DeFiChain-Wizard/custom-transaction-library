@@ -144,16 +144,13 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
    * @returns The transaction id
    */
   sendRawTx = async (rawtx: Rawtx, hex: Hex): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      try {
-        const tx = rawtx.send(hex);
-        resolve(tx);
-      } catch (e) {
-        logWarn("Couldn't send the transaction for now...");
-        logWarn(JSON.stringify(e));
-        reject(e);
-      }
-    });
+    try {
+      return await rawtx.send(hex);
+    } catch (e) {
+      logWarn("Couldn't send the transaction () for now...");
+      logWarn(JSON.stringify(e));
+      throw e;
+    }
   };
 
   /**
