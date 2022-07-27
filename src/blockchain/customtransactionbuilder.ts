@@ -17,7 +17,6 @@ import retry from "async-await-retry";
 import { Rawtx } from "@defichain/whale-api-client/dist/api/rawtx";
 import { Prevout } from "@defichain/jellyfish-transaction-builder/dist/provider";
 import { logError, logWarn } from "@defichainwizard/custom-logging";
-
 /**
  * The configuration to send a transaction.
  */
@@ -144,16 +143,13 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
    * @returns The transaction id
    */
   sendRawTx = async (rawtx: Rawtx, hex: Hex): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      try {
-        const tx = rawtx.send(hex);
-        resolve(tx);
-      } catch (e) {
-        logWarn("Couldn't send the transaction for now...");
-        logWarn(JSON.stringify(e));
-        reject(e);
-      }
-    });
+    try {
+      return await rawtx.send(hex);
+    } catch (e) {
+      logWarn("Couldn't send the transaction () for now...");
+      logWarn(JSON.stringify(e));
+      throw e;
+    }
   };
 
   /**
@@ -169,24 +165,27 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
     const ctx = new CTransactionSegWit(config.txn);
 
     // first wait for config.initialWaitTime before doing anything
-    setTimeout(async () => {
-      try {
-        await retry(
-          this.sendRawTx,
-          [config.client.rawtx, { hex: ctx.toHex() }],
-          {
-            retriesMax: config.retries,
-            interval: config.waitTime,
-            exponential: true,
-            factor: 3,
-          }
-        );
-      } catch (err) {
-        const error = `Could not send transaction after ${config.retries} retries. ERR: ${err}.`;
-        logError(error);
-        throw error;
-      }
-    }, config.initialWaitTime);
+    await new Promise((res) =>
+      setTimeout(() => res(0), config.initialWaitTime)
+    );
+
+    try {
+      await retry(
+        this.sendRawTx,
+        [config.client.rawtx, { hex: ctx.toHex() }],
+        {
+          retriesMax: config.retries,
+          interval: config.waitTime,
+          exponential: true,
+          factor: 3,
+        }
+      );
+    } catch (err) {
+      const error = `Could not send transaction after ${config.retries} retries. ERR: ${err}.`;
+      logError(error);
+      throw error;
+    }
+
     return ctx;
   }
 }
