@@ -87,7 +87,7 @@ class BlockScanner {
         break;
       }
 
-      await this.delay(1000);
+      await this.delay(10000);
 
       currWait += 1;
       if (currWait > maxWait) {
