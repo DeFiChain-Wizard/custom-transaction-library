@@ -16,7 +16,7 @@ import { WIZARD_TRANSACTION_CONFIG_PREFIX } from "../utils/helpers";
 import retry from "async-await-retry";
 import { Rawtx } from "@defichain/whale-api-client/dist/api/rawtx";
 import { Prevout } from "@defichain/jellyfish-transaction-builder/dist/provider";
-import { logError, logWarn } from "@defichainwizard/custom-logging";
+import { logDebug, logError, logWarn } from "@defichainwizard/custom-logging";
 /**
  * The configuration to send a transaction.
  */
@@ -144,9 +144,11 @@ class CustomTXBuilder extends P2WPKHTxnBuilder {
    */
   sendRawTx = async (rawtx: Rawtx, hex: Hex): Promise<string> => {
     try {
+      logDebug(`Sending RAW TX...`);
+      logDebug(hex);
       return await rawtx.send(hex);
     } catch (e) {
-      logWarn("Couldn't send the transaction () for now...");
+      logWarn("Couldn't send the transaction for now...");
       logWarn(JSON.stringify(e));
       throw e;
     }
