@@ -78,7 +78,7 @@ class BlockScanner {
 
     while (searchBlock === currBlock) {
       currBlock = await this.getBlockHeight();
-      logInfo(
+      logDebug(
         `Last block: ${searchBlock} -> current block: ${currBlock.valueOf()} (${currWait})`
       );
 
