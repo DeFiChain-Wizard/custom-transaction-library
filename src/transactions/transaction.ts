@@ -154,7 +154,7 @@ class Transaction implements DFITransaction {
     const txn = await this.ctxBuilder.getPrevoutTx(transactionToSend, prevout);
     const transaction = this.ctxBuilder.sendTransaction({
       txn,
-      initialWaitTime: 3000,
+      initialWaitTime: 5000,
       waitTime: 5000,
       retries: 3,
       client: this.client,
