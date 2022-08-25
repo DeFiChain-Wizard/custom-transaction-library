@@ -54,7 +54,6 @@ const message: CustomMessage = {
   },
   poolpairs: {},
   rules: { keepMinRatio: 150, keepMaxRatio: 160 },
-  telegram: { receiver: "rest", key: "1" },
 };
 
 // Send the transaction
