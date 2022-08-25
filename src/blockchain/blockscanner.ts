@@ -114,7 +114,7 @@ class BlockScanner {
   ): Promise<TransactionMessage | undefined> {
     let next: string | undefined;
     let myTXs: ApiPagedResponse<AddressActivity>;
-    let transactionBlock = 0;
+    let transactionBlockHeight = 0;
 
     logDebug(`[Block Scanner] Received last config block: ${lastConfigBlock}`);
 
@@ -131,10 +131,10 @@ class BlockScanner {
 
       // iterate through the relevant vout transactions (filtered by nulldata type && config message)
       for (const transaction of myVoutTXs) {
-        transactionBlock = transaction.block.height;
+        transactionBlockHeight = transaction.block.height;
 
         // if we're in a block that we've already scanned last time, let's stop and don't return anything
-        if (transactionBlock <= lastConfigBlock) {
+        if (transactionBlockHeight <= lastConfigBlock) {
           return undefined;
         }
 
@@ -148,12 +148,12 @@ class BlockScanner {
         // no custom message found - return undefined
         if (latestWizardTransaction) {
           const foundTransaction = {
-            blockTime: await this.getBlockHeight(),
+            blockTime: transaction.block.time,
             message: Buffer.from(
               latestWizardTransaction.script.hex.substring(10),
               "hex"
             ).toString(), // encrypted and compressed message as String
-            lastConfigBlock: transactionBlock,
+            lastConfigBlock: transactionBlockHeight,
           };
 
           logDebug(`[Block Scanner] Found Wizard transaction.`);
