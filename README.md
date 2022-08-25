@@ -53,7 +53,8 @@ const message: CustomMessage = {
     token: "DFI",
   },
   poolpairs: {},
-  rules: { keepMaxRatio: 150, keepMinRatio: 160 },
+  rules: { keepMinRatio: 150, keepMaxRatio: 160 },
+  telegram: { receiver: "rest", key: "1" },
 };
 
 // Send the transaction
