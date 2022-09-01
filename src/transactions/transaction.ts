@@ -15,14 +15,13 @@ import {
   CustomTransactionConfig,
   CustomTXBuilder,
 } from "../blockchain/customtransactionbuilder";
-import { MessageCompressor } from "../utils/compressor";
-import { MessageEncryptor } from "../utils/encryptor";
 import { Version } from "./version";
 import {
   isVersionMessage,
   WIZARD_TRANSACTION_CONFIG_PREFIX,
   WIZARD_TRANSACTION_VERSION_PREFIX,
 } from "../utils/helpers";
+import { MessageUtils } from "./messageutils";
 
 /**
  * The interface for the transaction, which defines the methods to be exposed.
@@ -78,22 +77,11 @@ class Transaction implements DFITransaction {
    */
   async send(message: CustomMessage | Version): Promise<string> {
     return await this.sendCustomMessage(
-      this.compressAndEncryptMessage(message),
+      MessageUtils.compressAndEncryptMessage(message, this.passphrase),
       isVersionMessage(message)
         ? WIZARD_TRANSACTION_VERSION_PREFIX
         : WIZARD_TRANSACTION_CONFIG_PREFIX
     );
-  }
-
-  /**
-   * Takes the compressed and encrypted message from the transaction and returns the
-   * decompressed and decrypted {@link CustomMessage}.
-   *
-   * @param message The message as extracted from the transaction.
-   * @returns The custom message.
-   */
-  getCustomMessage(message: string): CustomMessage | Version {
-    return this.decryptAndDecompressMessage(message);
   }
 
   /**
@@ -161,34 +149,6 @@ class Transaction implements DFITransaction {
     });
 
     return transaction;
-  }
-
-  /**
-   * Takes the {@link CustomMessage} and compresses and encrypts it.
-   *
-   * @param message The {@link CustomMessage} to compress and encrypt
-   * @returns the compressed and encrypted message as string
-   */
-  private compressAndEncryptMessage(message: CustomMessage | Version): string {
-    // first we will compress the message
-    const compressedData = MessageCompressor.compress(message);
-    // now we will encrypt the message
-    return MessageEncryptor.encrypt(compressedData, this.passphrase);
-  }
-
-  /**
-   * Takes the compressed and encrypted string from the transaction and returns the {@link CustomMessage}.
-   *
-   * @param message The compressed and encrypted string from the transaction
-   * @returns the uncompressed and decrypted {@link CustomMessage}
-   */
-  private decryptAndDecompressMessage(
-    message: string
-  ): CustomMessage | Version {
-    // first we will decrypt the message
-    const decryptedData = MessageEncryptor.decrypt(message, this.passphrase);
-    // now we will decompress the message
-    return MessageCompressor.decompress(decryptedData);
   }
 
   /**
