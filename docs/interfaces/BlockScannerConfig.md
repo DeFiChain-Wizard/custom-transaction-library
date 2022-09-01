@@ -19,7 +19,7 @@ The config needed for the block scanner to operate.
 
 #### Defined in
 
-[blockchain/blockscanner.ts:25](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/384335b/src/blockchain/blockscanner.ts#L25)
+[blockchain/blockscanner.ts:25](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2774d1c/src/blockchain/blockscanner.ts#L25)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[blockchain/blockscanner.ts:24](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/384335b/src/blockchain/blockscanner.ts#L24)
+[blockchain/blockscanner.ts:24](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2774d1c/src/blockchain/blockscanner.ts#L24)
