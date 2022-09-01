@@ -1,6 +1,6 @@
 {
     "name": "@defichainwizard/custom-transactions",
-    "version": "0.5.13",
+    "version": "0.6.0",
     "description": "The npm custom transaction library for the DeFIChain Wizard",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
