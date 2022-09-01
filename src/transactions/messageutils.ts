@@ -9,26 +9,12 @@ import { Version } from "./version";
  */
 class MessageUtils {
   /**
-   * Takes the compressed and encrypted message from the transaction and returns the
-   * decompressed and decrypted {@link CustomMessage}.
-   *
-   * @param message The message as extracted from the transaction.
-   * @returns The custom message.
-   */
-  public static getCustomMessage(
-    message: string,
-    passphrase: string[]
-  ): CustomMessage | Version {
-    return MessageUtils.decryptAndDecompressMessage(message, passphrase);
-  }
-
-  /**
    * Takes the {@link CustomMessage} and compresses and encrypts it.
    *
    * @param message The {@link CustomMessage} to compress and encrypt
    * @returns the compressed and encrypted message as string
    */
-  static compressAndEncryptMessage(
+  public static compressAndEncryptMessage(
     message: CustomMessage | Version,
     passphrase: string[]
   ): string {
@@ -44,7 +30,7 @@ class MessageUtils {
    * @param message The compressed and encrypted string from the transaction
    * @returns the uncompressed and decrypted {@link CustomMessage}
    */
-  static decryptAndDecompressMessage(
+  public static decryptAndDecompressMessage(
     message: string,
     passphrase: string[]
   ): CustomMessage | Version {

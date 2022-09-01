@@ -71,6 +71,17 @@ class Transaction implements DFITransaction {
   }
 
   /**
+   * Takes the compressed and encrypted message from the transaction and returns the
+   * decompressed and decrypted {@link CustomMessage}.
+   *
+   * @param message The message as extracted from the transaction.
+   * @returns The custom message.
+   */
+  public getCustomMessage(message: string): CustomMessage | Version {
+    return MessageUtils.decryptAndDecompressMessage(message, this.passphrase);
+  }
+
+  /**
    * Will compress, encrypt and send the given custom message.
    * @param message The {@link CustomMessage} or {@link Version} to send.
    * @returns the transaction id
