@@ -21,7 +21,7 @@ import {
   WIZARD_TRANSACTION_CONFIG_PREFIX,
   WIZARD_TRANSACTION_VERSION_PREFIX,
 } from "../utils/helpers";
-import { MessageUtils } from "./messageutils";
+import { MessageUtils } from "../utils/messageutils";
 
 /**
  * The interface for the transaction, which defines the methods to be exposed.

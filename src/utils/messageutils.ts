@@ -1,7 +1,7 @@
-import { CustomMessage } from "./message";
-import { MessageCompressor } from "../utils/compressor";
-import { MessageEncryptor } from "../utils/encryptor";
-import { Version } from "./version";
+import { CustomMessage } from "../transactions/message";
+import { MessageCompressor } from "./compressor";
+import { MessageEncryptor } from "./encryptor";
+import { Version } from "../transactions/version";
 
 /**
  * The message utils class that offers all methods to send a

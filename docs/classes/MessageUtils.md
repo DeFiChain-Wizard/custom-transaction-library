@@ -45,7 +45,7 @@ the compressed and encrypted message as string
 
 #### Defined in
 
-[transactions/messageutils.ts:17](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2774d1c/src/transactions/messageutils.ts#L17)
+utils/messageutils.ts:17
 
 ___
 
@@ -70,4 +70,4 @@ the uncompressed and decrypted [CustomMessage](../interfaces/CustomMessage.md)
 
 #### Defined in
 
-[transactions/messageutils.ts:33](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/2774d1c/src/transactions/messageutils.ts#L33)
+utils/messageutils.ts:33
