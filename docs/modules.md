@@ -45,7 +45,7 @@ true if it's a Custom Message
 
 #### Defined in
 
-[utils/helpers.ts:60](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/utils/helpers.ts#L60)
+[utils/helpers.ts:60](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/utils/helpers.ts#L60)
 
 ___
 
@@ -71,4 +71,4 @@ true if it's a Version
 
 #### Defined in
 
-[utils/helpers.ts:79](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/utils/helpers.ts#L79)
+[utils/helpers.ts:79](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/utils/helpers.ts#L79)

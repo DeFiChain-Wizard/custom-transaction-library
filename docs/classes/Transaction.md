@@ -48,7 +48,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:58](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L58)
+[transactions/transaction.ts:58](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L58)
 
 ## Properties
 
@@ -58,7 +58,7 @@ The constructor takes the transaction configuration [TransactionConfig](../inter
 
 #### Defined in
 
-[transactions/transaction.ts:49](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L49)
+[transactions/transaction.ts:49](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L49)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:48](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L48)
+[transactions/transaction.ts:48](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L48)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L52)
+[transactions/transaction.ts:52](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L52)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:50](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L50)
+[transactions/transaction.ts:50](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L50)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[transactions/transaction.ts:51](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L51)
+[transactions/transaction.ts:51](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L51)
 
 ## Methods
 
@@ -123,7 +123,7 @@ The custom message.
 
 #### Defined in
 
-[transactions/transaction.ts:80](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L80)
+[transactions/transaction.ts:80](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L80)
 
 ___
 
@@ -151,7 +151,7 @@ DFITransaction.send
 
 #### Defined in
 
-[transactions/transaction.ts:89](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L89)
+[transactions/transaction.ts:89](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L89)
 
 ___
 
@@ -174,7 +174,7 @@ Takes the compressed and encrypted message as string and sends it.
 
 #### Defined in
 
-[transactions/transaction.ts:103](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L103)
+[transactions/transaction.ts:103](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L103)
 
 ___
 
@@ -196,7 +196,7 @@ Takes a transaction config and sends it directly.
 
 #### Defined in
 
-[transactions/transaction.ts:128](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L128)
+[transactions/transaction.ts:128](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L128)
 
 ___
 
@@ -221,7 +221,7 @@ The transaction id
 
 #### Defined in
 
-[transactions/transaction.ts:149](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L149)
+[transactions/transaction.ts:149](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L149)
 
 ___
 
@@ -245,4 +245,4 @@ prevout Object
 
 #### Defined in
 
-[transactions/transaction.ts:171](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/5cc8bf3/src/transactions/transaction.ts#L171)
+[transactions/transaction.ts:171](https://github.com/DeFiChain-Wizard/custom-transcation-library/blob/d5b063f/src/transactions/transaction.ts#L171)
